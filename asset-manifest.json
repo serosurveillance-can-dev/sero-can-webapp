@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/sero-can-webapp/static/css/main.1028f2e2.chunk.css",
-    "main.js": "/sero-can-webapp/static/js/main.1b16d8da.chunk.js",
-    "main.js.map": "/sero-can-webapp/static/js/main.1b16d8da.chunk.js.map",
-    "runtime-main.js": "/sero-can-webapp/static/js/runtime-main.dcc9f6b0.js",
-    "runtime-main.js.map": "/sero-can-webapp/static/js/runtime-main.dcc9f6b0.js.map",
-    "static/js/2.9d7a82ef.chunk.js": "/sero-can-webapp/static/js/2.9d7a82ef.chunk.js",
-    "static/js/2.9d7a82ef.chunk.js.map": "/sero-can-webapp/static/js/2.9d7a82ef.chunk.js.map",
-    "index.html": "/sero-can-webapp/index.html",
-    "precache-manifest.fa7096aba3ee1463672255f1155eb6e8.js": "/sero-can-webapp/precache-manifest.fa7096aba3ee1463672255f1155eb6e8.js",
-    "service-worker.js": "/sero-can-webapp/service-worker.js",
-    "static/css/main.1028f2e2.chunk.css.map": "/sero-can-webapp/static/css/main.1028f2e2.chunk.css.map",
-    "static/js/2.9d7a82ef.chunk.js.LICENSE.txt": "/sero-can-webapp/static/js/2.9d7a82ef.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.1028f2e2.chunk.css",
+    "main.js": "/static/js/main.85cb8d1d.chunk.js",
+    "main.js.map": "/static/js/main.85cb8d1d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.bcb6c0b9.js",
+    "runtime-main.js.map": "/static/js/runtime-main.bcb6c0b9.js.map",
+    "static/js/2.9d7a82ef.chunk.js": "/static/js/2.9d7a82ef.chunk.js",
+    "static/js/2.9d7a82ef.chunk.js.map": "/static/js/2.9d7a82ef.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.15e3f92b153e3b038d85da3053051e74.js": "/precache-manifest.15e3f92b153e3b038d85da3053051e74.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.1028f2e2.chunk.css.map": "/static/css/main.1028f2e2.chunk.css.map",
+    "static/js/2.9d7a82ef.chunk.js.LICENSE.txt": "/static/js/2.9d7a82ef.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.dcc9f6b0.js",
+    "static/js/runtime-main.bcb6c0b9.js",
     "static/js/2.9d7a82ef.chunk.js",
     "static/css/main.1028f2e2.chunk.css",
-    "static/js/main.1b16d8da.chunk.js"
+    "static/js/main.85cb8d1d.chunk.js"
   ]
 }
