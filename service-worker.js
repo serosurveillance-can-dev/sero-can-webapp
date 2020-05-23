@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://serotracker.com/precache-manifest.66f4e340c9cdfc5a8ca62bd16a69958e.js"
+  "https://serotracker.com/precache-manifest.a33b1e8e7d91486c80f9cabb08be0ea4.js"
 );
 
 self.addEventListener('message', (event) => {
