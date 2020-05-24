@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "https://serotracker.com/static/css/main.1c2ae948.chunk.css",
-    "main.js": "https://serotracker.com/static/js/main.2c9e8730.chunk.js",
-    "main.js.map": "https://serotracker.com/static/js/main.2c9e8730.chunk.js.map",
-    "runtime-main.js": "https://serotracker.com/static/js/runtime-main.bef175a6.js",
-    "runtime-main.js.map": "https://serotracker.com/static/js/runtime-main.bef175a6.js.map",
-    "static/js/2.7708e57e.chunk.js": "https://serotracker.com/static/js/2.7708e57e.chunk.js",
-    "static/js/2.7708e57e.chunk.js.map": "https://serotracker.com/static/js/2.7708e57e.chunk.js.map",
-    "index.html": "https://serotracker.com/index.html",
-    "precache-manifest.a33b1e8e7d91486c80f9cabb08be0ea4.js": "https://serotracker.com/precache-manifest.a33b1e8e7d91486c80f9cabb08be0ea4.js",
-    "service-worker.js": "https://serotracker.com/service-worker.js",
-    "static/css/main.1c2ae948.chunk.css.map": "https://serotracker.com/static/css/main.1c2ae948.chunk.css.map",
-    "static/js/2.7708e57e.chunk.js.LICENSE.txt": "https://serotracker.com/static/js/2.7708e57e.chunk.js.LICENSE.txt",
-    "static/media/two-tone-light.svg": "https://serotracker.com/static/media/two-tone-light.59be83b8.svg"
+    "main.css": "/static/css/main.1c2ae948.chunk.css",
+    "main.js": "/static/js/main.4e72e515.chunk.js",
+    "main.js.map": "/static/js/main.4e72e515.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.bcb6c0b9.js",
+    "runtime-main.js.map": "/static/js/runtime-main.bcb6c0b9.js.map",
+    "static/js/2.7708e57e.chunk.js": "/static/js/2.7708e57e.chunk.js",
+    "static/js/2.7708e57e.chunk.js.map": "/static/js/2.7708e57e.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.cdd51a849d84e08126a0f337af57510e.js": "/precache-manifest.cdd51a849d84e08126a0f337af57510e.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.1c2ae948.chunk.css.map": "/static/css/main.1c2ae948.chunk.css.map",
+    "static/js/2.7708e57e.chunk.js.LICENSE.txt": "/static/js/2.7708e57e.chunk.js.LICENSE.txt",
+    "static/media/two-tone-light.svg": "/static/media/two-tone-light.59be83b8.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.bef175a6.js",
+    "static/js/runtime-main.bcb6c0b9.js",
     "static/js/2.7708e57e.chunk.js",
     "static/css/main.1c2ae948.chunk.css",
-    "static/js/main.2c9e8730.chunk.js"
+    "static/js/main.4e72e515.chunk.js"
   ]
 }
