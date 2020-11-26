@@ -1,23 +1,24 @@
 {
   "files": {
     "main.css": "/static/css/main.822b7aa0.chunk.css",
-    "main.js": "/static/js/main.9a25f672.chunk.js",
-    "main.js.map": "/static/js/main.9a25f672.chunk.js.map",
+    "main.js": "/static/js/main.52f74073.chunk.js",
+    "main.js.map": "/static/js/main.52f74073.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.bcb6c0b9.js",
     "runtime-main.js.map": "/static/js/runtime-main.bcb6c0b9.js.map",
-    "static/js/2.db2d0051.chunk.js": "/static/js/2.db2d0051.chunk.js",
-    "static/js/2.db2d0051.chunk.js.map": "/static/js/2.db2d0051.chunk.js.map",
+    "static/js/2.909f9aa6.chunk.js": "/static/js/2.909f9aa6.chunk.js",
+    "static/js/2.909f9aa6.chunk.js.map": "/static/js/2.909f9aa6.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.aaae57786b9bd1bc0a3e88c69f5beb19.js": "/precache-manifest.aaae57786b9bd1bc0a3e88c69f5beb19.js",
+    "precache-manifest.73e75d87a24230752deb208d9867539a.js": "/precache-manifest.73e75d87a24230752deb208d9867539a.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.822b7aa0.chunk.css.map": "/static/css/main.822b7aa0.chunk.css.map",
-    "static/js/2.db2d0051.chunk.js.LICENSE.txt": "/static/js/2.db2d0051.chunk.js.LICENSE.txt",
+    "static/js/2.909f9aa6.chunk.js.LICENSE.txt": "/static/js/2.909f9aa6.chunk.js.LICENSE.txt",
     "static/media/August2020Update.png": "/static/media/August2020Update.b2394ac4.png",
     "static/media/IndustryUpdateJuly_2020.png": "/static/media/IndustryUpdateJuly_2020.53e6e269.png",
     "static/media/IndustryUpdateJune_2020.png": "/static/media/IndustryUpdateJune_2020.2cac3c48.png",
     "static/media/IndustryUpdateMay_2020.png": "/static/media/IndustryUpdateMay_2020.4021b423.png",
     "static/media/IndustryUpdatePre_2020.png": "/static/media/IndustryUpdatePre_2020.a93736ac.png",
     "static/media/LancetIDArticle.png": "/static/media/LancetIDArticle.9c54a7db.png",
+    "static/media/MedRXIV.jpg": "/static/media/MedRXIV.a3f4e9f6.jpg",
     "static/media/Prepublication.png": "/static/media/Prepublication.0b43b193.png",
     "static/media/September2020Update.png": "/static/media/September2020Update.dc9d0a68.png",
     "static/media/SeroTrackerBloodBank_July_2020.png": "/static/media/SeroTrackerBloodBank_July_2020.669b184d.png",
@@ -26,8 +27,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.bcb6c0b9.js",
-    "static/js/2.db2d0051.chunk.js",
+    "static/js/2.909f9aa6.chunk.js",
     "static/css/main.822b7aa0.chunk.css",
-    "static/js/main.9a25f672.chunk.js"
+    "static/js/main.52f74073.chunk.js"
   ]
 }
