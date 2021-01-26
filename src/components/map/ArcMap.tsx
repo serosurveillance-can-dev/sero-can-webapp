@@ -12,50 +12,51 @@ interface state {
     lng: number,
     lat: number,
     zoom: number
-  }
+}
 
 class ArcMap extends React.Component {
-  mapContainer: string | HTMLElement = "";
-  state: state;
+    mapContainer: string | HTMLElement = "";
+    state: state;
 
-  constructor(props : any) {
-    super(props);
-    this.state = {
-      lng: 5,
-      lat: 34,
-      zoom: 2,
-    };
-  }
-  
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            lng: 5,
+            lat: 34,
+            zoom: 2,
+        };
+    }
 
-  componentDidMount() {
-    const map = new WebMap({
-        basemap: "topo-vector"
-    });
-      
-    const view = new MapView({
-    map: map,
-    container: "mapContainer",
-    center: [-118.244, 34.052],
-    zoom: 12
-    });
-  }
 
-  render() {
-    return (
-        <div ref={(el) => (this.mapContainer = el ?? "")} className="mapContainer w-100" />
-    );
-  }
+    componentDidMount() {
+        var map: WebMap;
+        map = new WebMap({
+            basemap: "topo-vector"
+        });
+
+        const view = new MapView({
+            map: map,
+            container: "viewDiv",
+            center: [-118.244, 34.052],
+            zoom: 12
+        });
+    }
+
+    render() {
+        return (
+            <div className="mapContainer w-100" id="viewDiv"/>
+        );
+    }
 }
 
 export default ArcMap;
 
-
+// <div ref={(el) => (this.mapContainer = el ?? "")} className="mapContainer w-100" id="viewDiv"/>
 
 
 /*
-// Takes in the style JSON object from VectorTileServer API response 
-// Modifies & adds attributes for Mapbox GL compatability 
+// Takes in the style JSON object from VectorTileServer API response
+// Modifies & adds attributes for Mapbox GL compatability
 async function prepare(url : string) {
 
   const styleUrl = url+"/resources/styles/root.json";
@@ -68,7 +69,7 @@ async function prepare(url : string) {
   fetchedStyle.sources.esri = {
     type: 'vector',
     tiles: [url+"/tile/{z}/{y}/{x}.pbf"],
-    maxzoom: 23,  
+    maxzoom: 23,
     };
 
   return fetchedStyle;
@@ -131,7 +132,7 @@ function addEsriLayer(map : mapboxgl.Map, url : string){
          var features3 = map.querySourceFeatures('Land/1');
          console.log(e)
        });
-       
+
        // When the mouse leaves the state-fill layer, update the feature state of the
        // previously hovered feature.
        map.on('mouseleave', 'esri', function () {
