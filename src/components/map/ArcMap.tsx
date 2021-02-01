@@ -2,6 +2,7 @@ import React from "react";
 import WebMap from '@arcgis/core/WebMap';
 import MapView from '@arcgis/core/views/MapView';
 import VectorTileLayer from '@arcgis/core/layers/VectorTileLayer'
+import FeatureLayer from '@arcgis/core/layers/FeatureLayer'
 import '@arcgis/core/assets/esri/themes/dark/main.css';
 import config from '@arcgis/core/config.js';
 
@@ -52,9 +53,22 @@ class ArcMap extends React.Component {
           url:
             "https://tiles.arcgis.com/tiles/5T5nSi527N4F7luB/arcgis/rest/services/WHO_Polygon_Basemap_Disputed_Areas_and_Borders_VTP/VectorTileServer"
         });
+
+        const popupTrailheads = {
+            "title": "Trailhead",
+            "content": "<b>Trail:</b> {CODE}<br>"
+          }
+
+        var featureLayer = new FeatureLayer({
+            url:"https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Countries_(Generalized)/FeatureServer/0/query?outFields=*&where=1%3D1",
+            outFields: ["CODE"],
+            popupTemplate: popupTrailheads
+          });
+
         map.add(baseLayer);
         map.add(countryPolygonLayer);
         map.add(disputedLayer);
+        map.add(featureLayer);
     }
 
     render() {
