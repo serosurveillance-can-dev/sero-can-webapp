@@ -1,19 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.0fb69656.chunk.css",
-    "main.js": "/static/js/main.f23c39c3.chunk.js",
-    "main.js.map": "/static/js/main.f23c39c3.chunk.js.map",
+    "main.css": "/static/css/main.e3ecbddf.chunk.css",
+    "main.js": "/static/js/main.19b00059.chunk.js",
+    "main.js.map": "/static/js/main.19b00059.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.bcb6c0b9.js",
     "runtime-main.js.map": "/static/js/runtime-main.bcb6c0b9.js.map",
-    "static/css/2.08a81a33.chunk.css": "/static/css/2.08a81a33.chunk.css",
-    "static/js/2.6f146ada.chunk.js": "/static/js/2.6f146ada.chunk.js",
-    "static/js/2.6f146ada.chunk.js.map": "/static/js/2.6f146ada.chunk.js.map",
+    "static/css/2.fc484be5.chunk.css": "/static/css/2.fc484be5.chunk.css",
+    "static/js/2.3c2944e3.chunk.js": "/static/js/2.3c2944e3.chunk.js",
+    "static/js/2.3c2944e3.chunk.js.map": "/static/js/2.3c2944e3.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.8d4d1a009883d17012183c9cae299775.js": "/precache-manifest.8d4d1a009883d17012183c9cae299775.js",
+    "precache-manifest.5c9bad239d3147648e8a52ff1c892cf7.js": "/precache-manifest.5c9bad239d3147648e8a52ff1c892cf7.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.08a81a33.chunk.css.map": "/static/css/2.08a81a33.chunk.css.map",
-    "static/css/main.0fb69656.chunk.css.map": "/static/css/main.0fb69656.chunk.css.map",
-    "static/js/2.6f146ada.chunk.js.LICENSE.txt": "/static/js/2.6f146ada.chunk.js.LICENSE.txt",
+    "static/css/2.fc484be5.chunk.css.map": "/static/css/2.fc484be5.chunk.css.map",
+    "static/css/main.e3ecbddf.chunk.css.map": "/static/css/main.e3ecbddf.chunk.css.map",
+    "static/js/2.3c2944e3.chunk.js.LICENSE.txt": "/static/js/2.3c2944e3.chunk.js.LICENSE.txt",
+    "static/js/mapbox-gl-csp-worker.3e6a801e.worker.js": "/static/js/mapbox-gl-csp-worker.3e6a801e.worker.js",
+    "static/js/mapbox-gl-csp-worker.3e6a801e.worker.js.map": "/static/js/mapbox-gl-csp-worker.3e6a801e.worker.js.map",
     "static/media/August2020Update.png": "/static/media/August2020Update.b2394ac4.png",
     "static/media/IndustryUpdateJuly_2020.png": "/static/media/IndustryUpdateJuly_2020.53e6e269.png",
     "static/media/IndustryUpdateJune_2020.png": "/static/media/IndustryUpdateJune_2020.2cac3c48.png",
@@ -31,9 +33,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.bcb6c0b9.js",
-    "static/css/2.08a81a33.chunk.css",
-    "static/js/2.6f146ada.chunk.js",
-    "static/css/main.0fb69656.chunk.css",
-    "static/js/main.f23c39c3.chunk.js"
+    "static/css/2.fc484be5.chunk.css",
+    "static/js/2.3c2944e3.chunk.js",
+    "static/css/main.e3ecbddf.chunk.css",
+    "static/js/main.19b00059.chunk.js"
   ]
 }
