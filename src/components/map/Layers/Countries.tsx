@@ -103,6 +103,15 @@ const Countries = (map: mapboxgl.Map | undefined, estimateGradePrevalences: Esti
                 }
             });
 
+            map.on("mousedown", "Countries", function (e: any) {
+                if (e) {
+
+                    var features = map.querySourceFeatures('your-source-id', {
+                        sourceLayer: 'your-source-layer'
+                        });
+                }
+            });
+
             map.on("mousemove", "Countries", function (e: any) {
                 const f = e.features[0];
                 if (f.state.hasData && f.id !== currentFeatureId && countryPop.isOpen()) {

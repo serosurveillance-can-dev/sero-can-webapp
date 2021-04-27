@@ -15,7 +15,18 @@ const StudyPins = (map: mapboxgl.Map | undefined, records: AirtableRecord[]) => 
 
   useEffect(() => {
     if (map && records.length > 0 && map.getLayer("study-pins") === undefined) {
-      const src = generateSourceFromRecords(records);
+      const src: any = generateSourceFromRecords(records);
+
+      //@ts-ignore
+      src.data.features.filter(pin => {
+        map.queryRenderedFeatures(pin.geometry.coordinates).forEach(f => {
+          if (f.layer['source-layer'] === "DISPUTED_AREAS") {
+            return false
+          }
+        })
+        return true
+      })
+      
       map.addSource("study-pins", src);
       map.addLayer({
         id: "study-pins",
@@ -56,6 +67,8 @@ const StudyPins = (map: mapboxgl.Map | undefined, records: AirtableRecord[]) => 
     if (map) {
       map.on("click", "study-pins", function (e: mapboxgl.MapMouseEvent & mapboxgl.EventData) {
         const source_id = e.features[0].properties.source_id;
+
+        const test = map.queryRenderedFeatures(e.geometry.coordinates)
 
         api.getRecordDetails(source_id).then((record) => {
           if (record !== null) {

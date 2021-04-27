@@ -66,6 +66,13 @@ const MapboxGLMap = (): any => {
         mapOnLoad(m, dispatch);
         setMap(m);
       });
+
+      m.on('sourcedata', function(e : any) {
+        console.log(e);
+        })
+      m.on('styledata', function(e : any) {
+        console.log(e);
+        })
     })();
 
     return () => map?.remove();
