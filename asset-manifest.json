@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.dee4bfba.chunk.css",
-    "main.js": "/static/js/main.93cbf0f1.chunk.js",
-    "main.js.map": "/static/js/main.93cbf0f1.chunk.js.map",
+    "main.css": "/static/css/main.b26b0da9.chunk.css",
+    "main.js": "/static/js/main.f4318260.chunk.js",
+    "main.js.map": "/static/js/main.f4318260.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.9d5e18d9.js",
     "runtime-main.js.map": "/static/js/runtime-main.9d5e18d9.js.map",
     "static/css/2.6fe74026.chunk.css": "/static/css/2.6fe74026.chunk.css",
-    "static/js/2.d6839aa0.chunk.js": "/static/js/2.d6839aa0.chunk.js",
-    "static/js/2.d6839aa0.chunk.js.map": "/static/js/2.d6839aa0.chunk.js.map",
+    "static/js/2.c43ececc.chunk.js": "/static/js/2.c43ececc.chunk.js",
+    "static/js/2.c43ececc.chunk.js.map": "/static/js/2.c43ececc.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.4c2d3fba63e1c3812a39be1b950df6e1.js": "/precache-manifest.4c2d3fba63e1c3812a39be1b950df6e1.js",
+    "precache-manifest.11c533e0a004bf3d8df2e3603f8e3975.js": "/precache-manifest.11c533e0a004bf3d8df2e3603f8e3975.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.6fe74026.chunk.css.map": "/static/css/2.6fe74026.chunk.css.map",
-    "static/css/main.dee4bfba.chunk.css.map": "/static/css/main.dee4bfba.chunk.css.map",
-    "static/js/2.d6839aa0.chunk.js.LICENSE.txt": "/static/js/2.d6839aa0.chunk.js.LICENSE.txt",
+    "static/css/main.b26b0da9.chunk.css.map": "/static/css/main.b26b0da9.chunk.css.map",
+    "static/js/2.c43ececc.chunk.js.LICENSE.txt": "/static/js/2.c43ececc.chunk.js.LICENSE.txt",
     "static/js/mapbox-gl-csp-worker.c39a782a.worker.js": "/static/js/mapbox-gl-csp-worker.c39a782a.worker.js",
     "static/js/mapbox-gl-csp-worker.c39a782a.worker.js.map": "/static/js/mapbox-gl-csp-worker.c39a782a.worker.js.map",
     "static/media/August2020Update.png": "/static/media/August2020Update.b2394ac4.png",
@@ -29,14 +29,16 @@
     "static/media/September2020Update.png": "/static/media/September2020Update.dc9d0a68.png",
     "static/media/SeroTrackerBloodBank_July_2020.png": "/static/media/SeroTrackerBloodBank_July_2020.669b184d.png",
     "static/media/University-Of-Calgary-Logo.png": "/static/media/University-Of-Calgary-Logo.dfd2aa50.png",
+    "static/media/WHO-EN-C-H.png": "/static/media/WHO-EN-C-H.92cca4d5.png",
+    "static/media/WHO-FR-C-H.png": "/static/media/WHO-FR-C-H.e509206a.png",
     "static/media/YearInReview2020.png": "/static/media/YearInReview2020.fd7fe07a.png",
     "static/media/colored-icon.svg": "/static/media/colored-icon.ab2ccbe8.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.9d5e18d9.js",
     "static/css/2.6fe74026.chunk.css",
-    "static/js/2.d6839aa0.chunk.js",
-    "static/css/main.dee4bfba.chunk.css",
-    "static/js/main.93cbf0f1.chunk.js"
+    "static/js/2.c43ececc.chunk.js",
+    "static/css/main.b26b0da9.chunk.css",
+    "static/js/main.f4318260.chunk.js"
   ]
 }
