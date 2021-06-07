@@ -1,15 +1,14 @@
 import _ from 'lodash';
 import httpClient from '../httpClient'
-import { AggregationFactor, Filters, FilterType } from '../types'
+import { Filters, FilterType } from '../types'
 
 export const updateFilters = async (
   dispatch: any,
   filters: Filters,
   filterType: FilterType,
-  filterValue: any[],
+  filterValue: any,
   exploreIsOpen: Boolean,
-  page: string,
-  aggregationFactor: AggregationFactor) => {
+  page: string) => {
 
   dispatch({
     type: "CHANGE_LOADING",
@@ -29,7 +28,7 @@ export const updateFilters = async (
   });
 
   const updatedFilters: Filters = Object.assign({}, filters);
-  updatedFilters[filterType] = new Set(filterValue);
+  updatedFilters[filterType] = filterValue;
 
   const api = new httpClient()
   // Update current records when called

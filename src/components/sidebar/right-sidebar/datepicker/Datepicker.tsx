@@ -41,8 +41,7 @@ export default function Datepicker({ page }: DatepickerProps) {
       "publish_date" as FilterType,
       newDates,
       state.dataPageState.exploreIsOpen,
-      page,
-      state.chartAggregationFactor)
+      page)
   }
 
   const CustomInput = ({ value, onClick, text }: any) => (

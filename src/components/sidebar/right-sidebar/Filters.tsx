@@ -8,6 +8,7 @@ import { toPascalCase } from "../../../utils/translate/caseChanger";
 import Translate, { getCountryName } from "../../../utils/translate/translateService";
 import InformationIcon from "../../shared/InformationIcon";
 import SectionHeader from "./SectionHeader";
+import Datepicker from "./datepicker/Datepicker";
 
 interface FilterProps {
   page: string
@@ -54,22 +55,13 @@ export default function Filters({ page }: FilterProps) {
   }
 
   const addFilter = async (data: any, filterType: FilterType) => {
-    dispatch({
-      type: 'UPDATE_FILTER',
-      payload: {
-        filterType,
-        filterValue: data.value,
-        pageStateEnum: page
-      }
-    });
     await updateFilters(
       dispatch,
       pageState.filters,
       filterType,
-      data.value,
+      data,
       state.dataPageState.exploreIsOpen,
-      page,
-      state.chartAggregationFactor)
+      page)
   }
 
   const buildFilterDropdown = (filter_type: FilterType, placeholder: string) => {
@@ -84,7 +76,7 @@ export default function Filters({ page }: FilterProps) {
           selection
           options={formatOptions(state.allFilterOptions[filter_type], filter_type)}
           onChange={async (e: any, data: any) => {
-            await addFilter(data, filter_type)
+            await addFilter(new Set(data.value), filter_type)
             sendAnalyticsEvent({
               /** Typically the object that was interacted with (e.g. 'Video') */
               category: 'Filter',
@@ -97,6 +89,20 @@ export default function Filters({ page }: FilterProps) {
           }}
           defaultValue={getFilters(filter_type)}
         />
+      </div>
+    )
+  }
+
+  const buildFilterCheckbox = (filter_type: FilterType, label: string) => {
+    return(
+      <div className="legend-item" id="National" onClick={async (e: React.MouseEvent<HTMLElement>) => {
+        await addFilter(
+          !pageState.filters[filter_type], 
+          filter_type
+        )
+      }}>
+        <label>{label}</label>
+        <input className="ui checkbox" type="checkbox" checked={pageState.filters[filter_type]} readOnly />
       </div>
     )
   }
@@ -140,6 +146,9 @@ export default function Filters({ page }: FilterProps) {
             <div>
               {buildFilterDropdown('overall_risk_of_bias', Translate('OverallRiskOfBias'))}
             </div>
+            <div>
+              {buildFilterCheckbox('unity_aligned_only', 'Show WHO Unity aligned studies')}
+            </div>
           </div>
           <div className="pb-1">
             <div>
@@ -171,6 +180,7 @@ export default function Filters({ page }: FilterProps) {
           </div>
         </div>
       </div>
+      <Datepicker page={page}/>
     </div>
   )
 }

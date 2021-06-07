@@ -132,16 +132,18 @@ export default class httpClient {
         reverse= false) {
         const reqBodyFilters: Record<string, string[]> = {}
 
+        const date = filters.publish_date as Array<Date>;
+        const unity_aligned_only = filters.unity_aligned_only;
+
         Object.keys(filters).forEach((o: string) => {
-            const filter = Array.from(filters[o as FilterType]);
-            if (o !== 'publish_date') {
-                reqBodyFilters[o] = filter as string[]
+            if(!(new Set(['publish_date', 'unity_aligned_only'])).has(o)){
+                const filter = Array.from(filters[o as FilterType]);
+                reqBodyFilters[o] = filter as string[];
             }
-        });
+        }) 
 
         const explore_columns = ["source_id", "estimate_grade", "pin_latitude", "pin_longitude"];
 
-        const date = filters['publish_date'] as Array<Date>
         const [startDate, endDate] = formatDates(date)
         const reqBody: Record<string, any> = {
             filters: reqBodyFilters,
@@ -151,6 +153,7 @@ export default class httpClient {
             reverse: reverse,
             per_page: null,
             page_index: null,
+            unity_aligned_only
         }
 
         if( only_explore_columns ){
@@ -173,17 +176,23 @@ export default class httpClient {
 
     async getEstimateGrades(filters: Filters) {
         const reqBodyFilters: Record<string, string[]> = {}
+
+        const date = filters.publish_date as Array<Date>;
+        const unity_aligned_only = filters.unity_aligned_only;
+
         Object.keys(filters).forEach((o: string) => {
-            const filter = Array.from(filters[o as FilterType]);
-            reqBodyFilters[o] = filter as string[]
-        })
-        delete reqBodyFilters['publish_date']
-        const date = filters['publish_date']        
+            if(!(new Set(['publish_date', 'unity_aligned_only'])).has(o)){
+                const filter = Array.from(filters[o as FilterType]);
+                reqBodyFilters[o] = filter as string[];
+            }
+        }) 
+
         const [startDate, endDate] = formatDates(date)
         const reqBody = {
             sampling_start_date: startDate,
             sampling_end_date: endDate,
-            filters: reqBodyFilters
+            filters: reqBodyFilters,
+            unity_aligned_only
         }
 
         const response = await this.httpPost('/data_provider/country_seroprev_summary', reqBody);
@@ -222,47 +231,5 @@ export default class httpClient {
         });
 
         return formattedResponse;
-    }
-
-    // Note: deprecated but leaving here in case we need again
-    async postMetaAnalysis(filters: Filters,
-        aggregation_variable: AggregationFactor,
-        meta_analysis_technique: string = 'fixed',
-        meta_analysis_transformation: string = 'double_arcsin_precise') {
-        const reqBodyFilters: Record<string, string[]> = {}
-
-        const date = filters['publish_date'];
-        Object.keys(filters).forEach((o: string) => {
-            const filter = Array.from(filters[o as FilterType]);
-            reqBodyFilters[o] = filter as string[]
-        });
-
-        // TODO: Rename publish_date to sampling_end_date
-        delete reqBodyFilters['publish_date'];
-        const [startDate, endDate] = formatDates(date)
-        const reqBody = {
-            sampling_start_date: startDate,
-            sampling_end_date: endDate,
-            filters: reqBodyFilters,
-            aggregation_variable,
-            meta_analysis_technique,
-            meta_analysis_transformation
-        };
-
-        const response = await this.httpPost('/meta_analysis/records', reqBody);
-        if (response) {
-            // Convert response to aggregatedRecord object
-            const formatted_response: AggregatedRecord[] = Object.keys(response).filter((key: string) => response[key] !== null).map((key: string) => {
-                return {
-                    error: response[key].error_percent,
-                    n: response[key].total_N,
-                    name: key,
-                    numStudies: response[key].n_studies,
-                    seroprevalence: response[key].seroprevalence_percent,
-                }
-            });
-            return formatted_response;
-        }
-        return [];
     }
 }

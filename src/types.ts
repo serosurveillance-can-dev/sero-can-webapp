@@ -55,6 +55,7 @@ export type Filters = {
   specimen_type: any;
   publish_date: any;
   estimate_grade: any;
+  unity_aligned_only: boolean;
 };
 
 export type FilterType =
@@ -67,7 +68,8 @@ export type FilterType =
   | "overall_risk_of_bias"
   | "isotypes_reported"
   | "specimen_type"
-  | "estimate_grade";
+  | "estimate_grade"
+  | "unity_aligned_only";
 
 export enum LanguageType {
   french = "fr",

@@ -17,8 +17,9 @@ export function getEmptyFilters(): Filters {
     overall_risk_of_bias: new Set(),
     isotypes_reported: new Set(),
     specimen_type: new Set(),
-    publish_date: new Set([initialMinDate, initialMaxDate]),
+    publish_date: [initialMinDate, initialMaxDate],
     estimate_grade: new Set(),
+    unity_aligned_only: false
   };
 }
 
@@ -116,7 +117,7 @@ const reducer = (state: State, action: Record<string, any>): State => {
       const { pageStateEnum, filterType, filterValue } = action.payload;
       const newState = { ...state };
       const pageState = newState[pageStateEnum as keyof State] as PageState;
-      pageState.filters[filterType as FilterType] = new Set(filterValue);
+      pageState.filters[filterType as FilterType] = filterValue;
       return newState;
     }
 
