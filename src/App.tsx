@@ -27,7 +27,7 @@ function App() {
   // General call that happens once at the start of everything.
   useEffect(() => {
     const api = new httpClient()
-    initializeData(dispatch, explore.filters, true, PageStateEnum.explore)
+    initializeData(dispatch, explore.filters, PageStateEnum.explore)
     const allFilterOptions = async () => {
       const { options, updatedAt, maxDate, minDate } = await api.getAllFilterOptions();
       dispatch({

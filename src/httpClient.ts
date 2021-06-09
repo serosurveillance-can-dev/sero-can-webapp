@@ -108,56 +108,42 @@ export default class httpClient {
 
     async getAllFilterOptions() {
         const response = await this.httpGet('/data_provider/filter_options', true);
-        const options: Record<string, any> = {}
-        for(let k in response){
-            // Currently no need for max and min date options
-            if(k !== "max_date" && k !== "min_date"){
-                // For all the other options, use a Set instead of list
-                // Because that's the data model our filters are used to
-                // TODO: refactor so we can keep filter options in a list
-                options[k] = new Set(response[k]);
-            }
-        }
+        const options = {...response} as Record<string, any>;
         // We know that only these 3 isotypes will ever be reported, thus we can hardcode
-        options.isotypes_reported = new Set(["IgG", "IgA", "IgM"]);
+        options.isotypes_reported = ["IgG", "IgA", "IgM"];
         const updatedAt = format(parseISO(response.updated_at), "yyyy/MM/dd");
         const maxDate = parseISO(response.max_date);     
         const minDate = parseISO(response.min_date);
+        delete options.min_date;
+        delete options.max_date;
         return { options, updatedAt, maxDate, minDate };
     }
-    
-    async getAirtableRecords(filters: Filters,
-        only_explore_columns: Boolean =false,
-        sorting_key = "denominator_value",
-        reverse= false) {
-        const reqBodyFilters: Record<string, string[]> = {}
 
+
+    preparePostBody(filters: Filters){
+        const reqBodyFilters = {...filters} as Record<string, any>;
         const date = filters.publish_date as Array<Date>;
         const unity_aligned_only = filters.unity_aligned_only;
+        const [startDate, endDate] = formatDates(date);
+        delete reqBodyFilters.publish_date;
+        delete reqBodyFilters.unity_aligned_only;
 
-        Object.keys(filters).forEach((o: string) => {
-            if(!(new Set(['publish_date', 'unity_aligned_only'])).has(o)){
-                const filter = Array.from(filters[o as FilterType]);
-                reqBodyFilters[o] = filter as string[];
-            }
-        }) 
-
-        const explore_columns = ["source_id", "estimate_grade", "pin_latitude", "pin_longitude"];
-
-        const [startDate, endDate] = formatDates(date)
         const reqBody: Record<string, any> = {
             filters: reqBodyFilters,
             sampling_start_date: startDate,
             sampling_end_date: endDate,
-            sorting_key: sorting_key,
-            reverse: reverse,
-            per_page: null,
-            page_index: null,
             unity_aligned_only
         }
+        return reqBody;
+    }
+
+    
+    async getAirtableRecords(filters: Filters,
+        only_explore_columns: Boolean=false) {
+        const reqBody: Record<string, any> = this.preparePostBody(filters);
 
         if( only_explore_columns ){
-            reqBody.columns = explore_columns;
+            reqBody.columns = ["source_id", "estimate_grade", "pin_latitude", "pin_longitude"];
         }
 
         const response = await this.httpPost('/data_provider/records', reqBody)
@@ -175,25 +161,7 @@ export default class httpClient {
     }
 
     async getEstimateGrades(filters: Filters) {
-        const reqBodyFilters: Record<string, string[]> = {}
-
-        const date = filters.publish_date as Array<Date>;
-        const unity_aligned_only = filters.unity_aligned_only;
-
-        Object.keys(filters).forEach((o: string) => {
-            if(!(new Set(['publish_date', 'unity_aligned_only'])).has(o)){
-                const filter = Array.from(filters[o as FilterType]);
-                reqBodyFilters[o] = filter as string[];
-            }
-        }) 
-
-        const [startDate, endDate] = formatDates(date)
-        const reqBody = {
-            sampling_start_date: startDate,
-            sampling_end_date: endDate,
-            filters: reqBodyFilters,
-            unity_aligned_only
-        }
+        const reqBody: Record<string, any> = this.preparePostBody(filters);
 
         const response = await this.httpPost('/data_provider/country_seroprev_summary', reqBody);
         if (!response) {

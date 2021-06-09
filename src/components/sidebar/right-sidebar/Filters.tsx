@@ -19,10 +19,6 @@ export default function Filters({ page }: FilterProps) {
   const [state, dispatch] = useContext(AppContext);
   const pageState = state[page as keyof State] as PageState;
 
-  const getFilters = (filter_type: FilterType): string[] => {
-    return Array.from(pageState.filters[filter_type]) as string[]
-  }
-
   const formatOptions = (options: any, filter_type: FilterType) => {
     if (!options) {
       return
@@ -61,7 +57,6 @@ export default function Filters({ page }: FilterProps) {
       pageState.filters,
       filterType,
       data,
-      state.dataPageState.exploreIsOpen,
       page)
   }
 
@@ -77,7 +72,7 @@ export default function Filters({ page }: FilterProps) {
           selection
           options={formatOptions(state.allFilterOptions[filter_type], filter_type)}
           onChange={async (e: any, data: any) => {
-            await addFilter(new Set(data.value), filter_type)
+            await addFilter(data.value, filter_type)
             sendAnalyticsEvent({
               /** Typically the object that was interacted with (e.g. 'Video') */
               category: 'Filter',
@@ -88,7 +83,7 @@ export default function Filters({ page }: FilterProps) {
               /** A numeric value associated with the event (e.g. 42) */
             })
           }}
-          defaultValue={getFilters(filter_type)}
+          defaultValue={pageState.filters[filter_type] as string[]}
         />
       </div>
     )
@@ -102,7 +97,7 @@ export default function Filters({ page }: FilterProps) {
           filter_type
         )
       }}>
-        <input className="ui checkbox" type="checkbox" checked={pageState.filters[filter_type]} readOnly />
+        <input className="ui checkbox" type="checkbox" checked={pageState.filters[filter_type] as boolean} readOnly />
         <label>{label}</label>
       </div>
     )

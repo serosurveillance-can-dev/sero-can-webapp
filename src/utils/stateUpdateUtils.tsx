@@ -7,7 +7,6 @@ export const updateFilters = async (
   filters: Filters,
   filterType: FilterType,
   filterValue: any,
-  exploreIsOpen: Boolean,
   page: string) => {
 
   dispatch({
@@ -35,7 +34,7 @@ export const updateFilters = async (
   const [records,
     estimateGradePrevalences] = await
       Promise.all([
-        api.getAirtableRecords(updatedFilters, exploreIsOpen),
+        api.getAirtableRecords(updatedFilters, true),
         api.getEstimateGrades(updatedFilters)
       ]);
  
@@ -57,7 +56,7 @@ export const updateFilters = async (
   })
 }
 
-export const initializeData = async (dispatch: any, filters: Filters, exploreIsOpen: Boolean, page: string) => {
+export const initializeData = async (dispatch: any, filters: Filters, page: string) => {
 
   const api = new httpClient()
 
@@ -71,7 +70,7 @@ export const initializeData = async (dispatch: any, filters: Filters, exploreIsO
   
   const [records,
     estimateGradePrevalences] = await Promise
-      .all([api.getAirtableRecords(filters, exploreIsOpen),
+      .all([api.getAirtableRecords(filters, true),
       api.getEstimateGrades(filters)]);
 
   dispatch({

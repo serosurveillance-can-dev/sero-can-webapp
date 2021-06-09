@@ -15,20 +15,6 @@ export default function Explore() {
   const isMobileDeviceOrTablet = useMediaQuery({ maxDeviceWidth: mobileDeviceOrTabletWidth });
   const [state, dispatch] = useContext(AppContext)
 
-  useEffect(() => {
-    dispatch({
-      type: "UPDATE_EXPLORE_IS_OPEN",
-      payload: true
-    })
-    return () => {
-      dispatch({
-        type: "UPDATE_EXPLORE_IS_OPEN",
-        payload: false
-      })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   return (
     <>
       <div className="fill flex dashboard">

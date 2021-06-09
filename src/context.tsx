@@ -8,17 +8,17 @@ const initialMaxDate = new Date();
 
 export function getEmptyFilters(): Filters {
   return {
-    source_type: new Set(),
-    test_type: new Set(),
-    country: new Set(),
-    population_group: new Set(),
-    sex: new Set(),
-    age: new Set(),
-    overall_risk_of_bias: new Set(),
-    isotypes_reported: new Set(),
-    specimen_type: new Set(),
+    source_type: [],
+    test_type: [],
+    country: [],
+    population_group: [],
+    sex: [],
+    age: [],
+    overall_risk_of_bias: [],
+    isotypes_reported: [],
+    specimen_type: [],
     publish_date: [initialMinDate, initialMaxDate],
-    estimate_grade: new Set(),
+    estimate_grade: [],
     unity_aligned_only: false
   };
 }
@@ -42,9 +42,6 @@ const initialState: State = {
   // representing the data page once
   // we put filters there
   allFilterOptions: getEmptyFilters(),
-  dataPageState: {
-    exploreIsOpen: true,
-  },
   calendarStartDates: {
     // Important, the fact that we use an hour here tells us that we are using a default value
     minDate: initialMinDate,
@@ -139,14 +136,6 @@ const reducer = (state: State, action: Record<string, any>): State => {
     }
     case "UPDATE_AGGREGATION_FACTOR":
       return { ...state, chartAggregationFactor: action.payload };
-    case "UPDATE_EXPLORE_IS_OPEN":
-      return {
-        ...state,
-        dataPageState: {
-          ...state.dataPageState,
-          exploreIsOpen: action.payload,
-        },
-      };
     case "TOGGLE_NATIONAL_PIN_LAYER": {
       return {
         ...state,

@@ -40,7 +40,6 @@ export default function Datepicker({ page }: DatepickerProps) {
       pageState.filters,
       "publish_date" as FilterType,
       newDates,
-      state.dataPageState.exploreIsOpen,
       page)
   }
 
