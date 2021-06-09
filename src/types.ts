@@ -41,8 +41,6 @@ export type AggregatedRecord = {
   seroprevalence: number;
 };
 
-// Each filter will be a javascript set
-// TODO: find typing to represent sets
 export type Filters = {
   source_type: string[];
   test_type: string[];

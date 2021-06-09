@@ -117,6 +117,13 @@ const reducer = (state: State, action: Record<string, any>): State => {
       pageState.filters[filterType as FilterType] = filterValue;
       return newState;
     }
+    case "UPDATE_ALL_FILTERS": {
+      const { pageStateEnum, newFilters } = action.payload;
+      const newState = { ...state };
+      const pageState = newState[pageStateEnum as keyof State] as PageState;
+      pageState.filters = newFilters;
+      return newState;
+    }
 
     case "MAX_MIN_DATES":
       const { minDate, maxDate } = action.payload;

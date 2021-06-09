@@ -16,7 +16,7 @@ interface DatepickerProps {
 export default function Datepicker({ page }: DatepickerProps) {
   const [state, dispatch] = useContext(AppContext);
   const pageState = state[page as keyof State] as PageState;
-  const [filterStartDate, filterEndDate] = Array.from(pageState.filters.publish_date);
+  const [filterStartDate, filterEndDate] = pageState.filters.publish_date;
   const [startDate, setStartDate] = useState(filterStartDate);
   const [endDate, setEndDate] = useState(filterEndDate);
 
