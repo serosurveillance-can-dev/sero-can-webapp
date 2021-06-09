@@ -26,17 +26,17 @@ export default function Legend() {
       <div className="legend-item" id="National" onClick={handleLegendToggle}>
         <i className="circleBase legend-icon" style={{ background: MapSymbology.StudyFeature.National.Color }}></i>
         <label>{Translate("NationalStudies")}</label>
-        <input className="ui checkbox" type="checkbox" checked={state.explore.legendLayers.National} readOnly />
+        <input className="ui checkbox legend-checkbox" type="checkbox" checked={state.explore.legendLayers.National} readOnly />
       </div>
       <div className="legend-item" id="Regional" onClick={handleLegendToggle}>
         <i className="circleBase legend-icon" style={{ background: MapSymbology.StudyFeature.Regional.Color }}></i>
         <label>{Translate("RegionalStudies")}</label>
-        <input className="ui checkbox" type="checkbox" checked={state.explore.legendLayers.Regional} readOnly />
+        <input className="ui checkbox legend-checkbox" type="checkbox" checked={state.explore.legendLayers.Regional} readOnly />
       </div>
       <div className="legend-item mb-1" id="Local" onClick={handleLegendToggle}>
         <i className="circleBase legend-icon" style={{ background: MapSymbology.StudyFeature.Local.Color }}></i>
         <label>{Translate("LocalStudies")}</label>
-        <input className="ui checkbox" type="checkbox" checked={state.explore.legendLayers.Local} readOnly />
+        <input className="ui checkbox legend-checkbox" type="checkbox" checked={state.explore.legendLayers.Local} readOnly />
       </div>
       <div className="legend-item">
         <i className="block legend-icon" style={{ background: MapSymbology.CountryFeature.HasData.Color, outlineWidth: 1, outlineStyle: "solid" }}></i>

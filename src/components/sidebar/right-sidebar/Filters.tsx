@@ -9,6 +9,7 @@ import Translate, { getCountryName } from "../../../utils/translate/translateSer
 import InformationIcon from "../../shared/InformationIcon";
 import SectionHeader from "./SectionHeader";
 import Datepicker from "./datepicker/Datepicker";
+import "./Filters.css";
 
 interface FilterProps {
   page: string
@@ -95,14 +96,14 @@ export default function Filters({ page }: FilterProps) {
 
   const buildFilterCheckbox = (filter_type: FilterType, label: string) => {
     return(
-      <div className="legend-item" id="National" onClick={async (e: React.MouseEvent<HTMLElement>) => {
+      <div className="checkbox-item pb-3" id="National" onClick={async (e: React.MouseEvent<HTMLElement>) => {
         await addFilter(
           !pageState.filters[filter_type], 
           filter_type
         )
       }}>
-        <label>{label}</label>
         <input className="ui checkbox" type="checkbox" checked={pageState.filters[filter_type]} readOnly />
+        <label>{label}</label>
       </div>
     )
   }
@@ -141,13 +142,13 @@ export default function Filters({ page }: FilterProps) {
               }
             </div>
             <div>
+              {buildFilterCheckbox('unity_aligned_only', 'Show WHO Unity Aligned Studies')}
+            </div>
+            <div>
               {buildFilterDropdown('source_type', Translate('SourceType'))}
             </div>
             <div>
               {buildFilterDropdown('overall_risk_of_bias', Translate('OverallRiskOfBias'))}
-            </div>
-            <div>
-              {buildFilterCheckbox('unity_aligned_only', 'Show WHO Unity aligned studies')}
             </div>
           </div>
           <div className="pb-1">
