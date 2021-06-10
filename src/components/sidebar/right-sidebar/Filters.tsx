@@ -130,14 +130,26 @@ export default function Filters({ page }: FilterProps) {
                   tooltip_text={
                   <div>
                     <p>{Translate('StudyInformationTooltip', ['FirstParagraph'])}</p>
-                    <p>{Translate('StudyInformationTooltip', ['SecondParagraph'])}</p>
+                    <p>
+                      <b>{Translate('StudyInformationTooltip', ['SecondParagraph', 'PartOne'])}</b>
+                      {Translate('StudyInformationTooltip', ['SecondParagraph', 'PartTwo'])}
+                    </p>
+                    <p>
+                      <b>{Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartOne'])}</b>
+                      {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartTwo'])}
+                      <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/technical-guidance/early-investigations" 
+                      target="_blank" rel="noopener noreferrer">
+                        {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartThree'])}
+                      </a>
+                      {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartFour'])}
+                    </p>
                   </div>
                   }
                 />
               }
             </div>
             <div>
-              {buildFilterCheckbox('unity_aligned_only', 'Show WHO Unity Aligned Studies')}
+              {buildFilterCheckbox('unity_aligned_only', Translate('ShowUnityStudies'))}
             </div>
             <div>
               {buildFilterDropdown('source_type', Translate('SourceType'))}

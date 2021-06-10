@@ -438,6 +438,7 @@
     "Male": "Homme",
     "Unspecified": "Non précisé"
   },
+  "ShowUnityStudies": "Montrer les études Unité-aligné",
   "Source": "Source",
   "SourceType": "Type de source",
   "SourceTypeOptions": {
@@ -469,8 +470,17 @@
   },
   "StudyInformation": "Informations sur l'étude",
   "StudyInformationTooltip": {
-    "FirstParagraph": "Trier selon les détails d'étude, y compris le type de source (publication, préimpression, actualité ou rapport) et l'état de l'étude (en cours, complétée).",
-    "SecondParagraph": "Risque de partialité: Reflète la mesure dans laquelle la prévalence réelle peut être différente de la prévalence estimée par les examinateurs de SeroTracker en fonction de l’outil d’evaluation critique de l’Institut Joanna Briggs"
+    "FirstParagraph": "Trier selon les détails d'étude, y compris le type de source (publication, préimpression, actualité ou rapport), l'état de l'étude (en cours, complétée), et l'alignement avec le protocole Unité.",
+    "SecondParagraph": {
+      "PartOne": "Risque de partialité: ",
+      "PartTwo": "Reflète la mesure dans laquelle la prévalence réelle peut être différente de la prévalence estimée par les examinateurs de SeroTracker en fonction de l’outil d’evaluation critique de l’Institut Joanna Briggs."
+    },
+    "ThirdParagraph": {
+      "PartOne": "OMS protocole Unité: ",
+      "PartTwo": "L'OMS a developpé plusieurs protocoles standardisés pour les enquêtes de COVID-19: ",
+      "PartThree": "Les études Unité. ",
+      "PartFour": "SéroTracker travaille avec l'OMS pour soutenir et visualiser les études séro-épidémiologique en population aligné avec le protocole Unité.."
+    }
   },
   "StudySize": "Taille de l'étude",
   "StudyStatus": "État de l'étude",
