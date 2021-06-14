@@ -468,13 +468,13 @@
   "StudyInformationTooltip": {
     "FirstParagraph": "Filter on study details, including source type (publication, preprint, news, or report), study status (ongoing, completed), and alignment with the WHO Unity protocol.",
     "SecondParagraph": {
-      "PartOne": "Risk of bias: ",
+      "PartOne": "Risk of bias:",
       "PartTwo": "Reflects the extent to which the true prevalence may be different from the estimated prevalence. Estimated by SeroTracker reviewers based on the Joanna Briggs Institute critical appraisal tool for prevalence estimates."
     },
     "ThirdParagraph": {
-      "PartOne": "WHO Unity protocol: ",
-      "PartTwo": "The WHO developed several standardized generic protocols for robust investigations for COVID-19: ",
-      "PartThree": "the Unity studies. ",
+      "PartOne": "WHO Unity protocol:",
+      "PartTwo": "The WHO developed several standardized generic protocols for robust investigations for COVID-19:",
+      "PartThree": "the Unity studies.",
       "PartFour": "SeroTracker is collaborating with the WHO to support and visualize studies aligned with the population-based seroepidemiological Unity protocol."
     }
   },

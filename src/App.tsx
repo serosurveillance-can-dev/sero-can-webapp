@@ -156,7 +156,7 @@ function App() {
         </Route>
         <Route path="/:language/Unity">
           <Explore initialFilters={(() => {
-            const initialFilters = getEmptyFilters();
+            let initialFilters = getEmptyFilters();
             initialFilters.unity_aligned_only = true;
             return initialFilters;
           })()}/>

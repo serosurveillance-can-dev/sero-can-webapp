@@ -131,15 +131,15 @@ export default function Filters({ page }: FilterProps) {
                   <div>
                     <p>{Translate('StudyInformationTooltip', ['FirstParagraph'])}</p>
                     <p>
-                      <b>{Translate('StudyInformationTooltip', ['SecondParagraph', 'PartOne'])}</b>
+                      <b>{Translate('StudyInformationTooltip', ['SecondParagraph', 'PartOne'], null, [false, true])}</b>
                       {Translate('StudyInformationTooltip', ['SecondParagraph', 'PartTwo'])}
                     </p>
                     <p>
-                      <b>{Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartOne'])}</b>
-                      {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartTwo'])}
+                      <b>{Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartOne'], null, [false, true])}</b>
+                      {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartTwo'], null, [false, true])}
                       <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/technical-guidance/early-investigations" 
                       target="_blank" rel="noopener noreferrer">
-                        {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartThree'])}
+                        {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartThree'], null, [false, true])}
                       </a>
                       {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartFour'])}
                     </p>
