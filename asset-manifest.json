@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.42707ea4.chunk.css",
-    "main.js": "/static/js/main.2f46abd7.chunk.js",
-    "main.js.map": "/static/js/main.2f46abd7.chunk.js.map",
+    "main.js": "/static/js/main.8c88f203.chunk.js",
+    "main.js.map": "/static/js/main.8c88f203.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.9d5e18d9.js",
     "runtime-main.js.map": "/static/js/runtime-main.9d5e18d9.js.map",
     "static/css/2.6fe74026.chunk.css": "/static/css/2.6fe74026.chunk.css",
-    "static/js/2.08c1cd7f.chunk.js": "/static/js/2.08c1cd7f.chunk.js",
-    "static/js/2.08c1cd7f.chunk.js.map": "/static/js/2.08c1cd7f.chunk.js.map",
+    "static/js/2.350cfd97.chunk.js": "/static/js/2.350cfd97.chunk.js",
+    "static/js/2.350cfd97.chunk.js.map": "/static/js/2.350cfd97.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.12248ec5dbdd573a02212a6799066cf2.js": "/precache-manifest.12248ec5dbdd573a02212a6799066cf2.js",
+    "precache-manifest.f4cf789cf27b6fcb2b8b2a50a32cc3fa.js": "/precache-manifest.f4cf789cf27b6fcb2b8b2a50a32cc3fa.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.6fe74026.chunk.css.map": "/static/css/2.6fe74026.chunk.css.map",
     "static/css/main.42707ea4.chunk.css.map": "/static/css/main.42707ea4.chunk.css.map",
-    "static/js/2.08c1cd7f.chunk.js.LICENSE.txt": "/static/js/2.08c1cd7f.chunk.js.LICENSE.txt",
+    "static/js/2.350cfd97.chunk.js.LICENSE.txt": "/static/js/2.350cfd97.chunk.js.LICENSE.txt",
     "static/js/mapbox-gl-csp-worker.c39a782a.worker.js": "/static/js/mapbox-gl-csp-worker.c39a782a.worker.js",
     "static/js/mapbox-gl-csp-worker.c39a782a.worker.js.map": "/static/js/mapbox-gl-csp-worker.c39a782a.worker.js.map",
     "static/media/August2020Update.png": "/static/media/August2020Update.b2394ac4.png",
@@ -22,6 +22,7 @@
     "static/media/IndustryUpdateJune_2020.png": "/static/media/IndustryUpdateJune_2020.2cac3c48.png",
     "static/media/IndustryUpdateMay_2020.png": "/static/media/IndustryUpdateMay_2020.4021b423.png",
     "static/media/IndustryUpdatePre_2020.png": "/static/media/IndustryUpdatePre_2020.a93736ac.png",
+    "static/media/InsuringTheEconomy.png": "/static/media/InsuringTheEconomy.14c5681c.png",
     "static/media/LancetIDArticle.png": "/static/media/LancetIDArticle.9c54a7db.png",
     "static/media/MedRXIV.jpg": "/static/media/MedRXIV.a3f4e9f6.jpg",
     "static/media/October2020Update.png": "/static/media/October2020Update.ca751a5c.png",
@@ -37,8 +38,8 @@
   "entrypoints": [
     "static/js/runtime-main.9d5e18d9.js",
     "static/css/2.6fe74026.chunk.css",
-    "static/js/2.08c1cd7f.chunk.js",
+    "static/js/2.350cfd97.chunk.js",
     "static/css/main.42707ea4.chunk.css",
-    "static/js/main.2f46abd7.chunk.js"
+    "static/js/main.8c88f203.chunk.js"
   ]
 }
