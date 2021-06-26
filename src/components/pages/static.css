@@ -1,132 +1,155 @@
 .page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.policy-container {
+  flex-direction: column;
+  display: flex;
 }
 
 .policy-iframe {
-    border: none;
-    border-left: 2px solid grey;
-    width: 100%;
-    height: calc(100vh - 100px);
-    display: block;
-}
-
-.terms {
-    min-height: calc(100% - 100px);
+  border: none;
+  border-left: 2px solid grey;
 }
 
 .dashboard {
-    /* accounts for header and footer */
-    height: calc(100% - 100px);
-    max-height: calc(100% - 100px);
-    overflow-y: hidden;
+  max-height: calc(100% - 50px);
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .static-content {
-    width: 60%;
+  width: 60%;
 }
 
 .static-mobile {
-    width: 95%;
-}
-
-.reference-table {
-    width: 80%;
+  width: 95%;
 }
 
 .static-content li {
-    margin-top: 6px;
-    margin-bottom: 6px;
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 
 .static-content h1 {
-    margin-block-start: 1.2em;
-    margin-block-end: 0.8em;
+  margin-block-start: 1.2em;
+  margin-block-end: 0.8em;
 }
 
 .static-content h2 {
-    margin-block-start: 1.2em;
-    margin-block-end: 0.8em;
+  margin-block-start: 1.2em;
+  margin-block-end: 0.8em;
 }
 
 .static-content h4 {
-    margin-block-start: 0.8em;
-    margin-block-end: 0.8em;
+  margin-block-start: 0.8em;
+  margin-block-end: 0.8em;
 }
 
 .vertical-spacer {
-    margin-bottom: 20px;
-    margin-top: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .dashboard-img {
-    width: 80%;
-    border: 1px solid #ccc;
+  width: 80%;
+  border: 1px solid #ccc;
 }
 
 .bio-grid-container {
-    display: inline-grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-row-gap: 1em;
-    grid-column-gap: 1.5em;
-    margin-block-end: 1em;
-    width: 100%;
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 1em;
+  grid-column-gap: 1.5em;
+  margin-block-end: 1em;
+  width: 100%;
 }
 
 .airtable-embed {
-    background: transparent; 
-    border: 1px solid #ccc;
+  background: transparent;
+  border: 1px solid #ccc;
 }
 
 .icon {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .team-name-text {
-    font-weight: normal;
-    font-style: italic;
+  font-weight: normal;
+  font-style: italic;
 }
 .linked-in {
-    color: #053f5a
+  color: #053f5a;
 }
 
 .social-media {
-    color: #495057
+  color: #495057;
 }
 
 .email {
-    color: #495057
-}  
+  color: #495057;
+}
 
 .twitter {
-    color: #1aa4dd
+  color: #1aa4dd;
 }
 
 .center-container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;  
-    display: flex;
-    height: 100%;
-    width: 100%; 
-    padding-bottom: 10%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 10%;
 }
 
 .not-found-header {
-    font-size: 128px;
-    margin: 0px;
-    line-height: 1.4;
+  font-size: 128px;
+  margin: 0px;
+  line-height: 1.4;
 }
 
 .not-found-subheader {
-    font-size: 36px;
-    font-weight: 500;
-    margin-bottom: 8px;
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .ui.button.not-found-button {
-    background-color: #455a64;
-    color: white;
+  background-color: #455a64;
+  color: white;
+}
+
+.ui.blue.button {
+  background-color: #55a6ba;
+  color: #fff;
+}
+
+.ui.blue.button:hover {
+  background-color: #4d95a7;
+}
+
+.ui.accordion .title:not(.ui) {
+  font-size: 16px;
+  font-weight: 600;
+  color: #212121;
+}
+
+.button-text {
+  color: white;
+}
+
+.iframe-style {
+  background: transparent;
+  border: 0px;
+  width: 100%;
+  height: 533px;
+}
+
+.no-space {
+  display: inline;
 }

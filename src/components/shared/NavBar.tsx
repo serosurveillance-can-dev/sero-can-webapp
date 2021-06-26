@@ -78,11 +78,11 @@ export const NavBar = () => {
               Translate('Data')}
           </Link>
         </div>
-        <div className={getTabClass('/Insights')}>
-          <Link to={withLocaleUrl("Insights")}>
+        <div className={getTabClass('/Publications')}>
+          <Link to={withLocaleUrl("Publications")}>
             {isMobileDeviceOrTablet ?
               <FontAwesomeIcon icon={faFileAlt} size="lg" /> :
-              Translate('Insights')}
+              Translate('Publications')}
           </Link>
         </div>
         <div className={getTabClass('/About')}>

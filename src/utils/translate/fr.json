@@ -19,7 +19,6 @@
       "WHO2": "de la santé pour visualiser et synthétiser les résultats des études de",
       "UnityStudies": "séroprévalence Unity.",
       "WHO3": "SeroTracker et l’Organisation mondiale de la santé remercions le Ministère Fédéral Allemand de la Santé (BMG) Recherche et Développement COVID-19 pour le financement pour soutenir cet effort"
-      
     },
     "ContactSection": {
       "BulletPointFive": {
@@ -112,13 +111,17 @@
     }
   },
   "BlankUniversity": "Université de NOM",
+  "ChangeLog": "Un registre de modifications",
   "ChangeSettings": "Modifier les paramètres",
   "CoDirector": "Codirecteur",
   "ContactUs": "Nous contacter",
   "CookiePolicy": "Politique sur les fichiers témoins",
   "CookiePolicyBody": "Nous utilisons des fichiers témoins pour nous permettre de livrer une meilleure expérience d'utilisation et nous ne collectons jamais de données personnelles. En utilisant notre site Internet, vous confirmez que vous avez lu et accepté nos ",
   "Countries": "Pays",
-  "CountriesIncluded": "Pays inclus",
+  "CountriesIncluded": {
+    "PartOne": "dans",
+    "PartTwo": "pays et territories"
+  },
   "CountriesAndAreas": "Pays et régions",
   "CountryEstimatesExist": "Pays dotés d'estimations de séroprévalence",
   "CountryEstimatesNotExist": "",
@@ -133,10 +136,10 @@
   "Dashboard": "Tableau de bord",
   "Data": "Données",
   "DatabaseUptoDateTo": "Base de données à jour pour",
-  "DataDictionary": "dictionnaire de données",
-  "DataDictionaryContent": {
-    "DataDictionaryContentParagraphOne": "Pour plus d'informations et de contexte sur nos données, veuillez s'il vous plait consulter notre",
-    "DataDictionaryContentParagraphTwo": "et"
+  "DataDictionary": "Dictionnaire de données",
+  "DataDictionaryText": {
+    "FirstParagraph": "Pour plus d'informations et de contexte sur nos données, veuillez s'il vous plait consulter notre",
+    "SecondParagraph": "et"
   },
   "DataDownload": "Pour télécharger une liste de toutes les études de notre base de données et des estimations sommaires de la séroprévalence, veuillez s’il vous plait cliquer sur le lien «Télécharger CSV» en bas à droite de cette page. Si vous avez besoin de données supplémentaires ou d’informations sur ces données pour effectuer votre analyse, n’hésitez pas de contacter",
   "DateRange": "Plage de données",
@@ -154,6 +157,49 @@
   "DisclaimerList5": "Toute utilisation inexacte ou à des fins publicitaires ou commerciales des noms, des logos, des marques de commerce ou de l’habillage commercial de SeroTracker ou du Groupe de travail sur l’immunité face à la COVID-19 est strictement interdite, sauf avec le consentement écrit explicite d’un représentant* de SeroTracker. ",
   "DisclaimerList6": "Les présentes conditions d’utilisation sont sujettes à modification. En utilisant le site Web, vous reconnaissez que vous acceptez ces conditions et leurs éventuelles modifications",
   "DisclaimerListHeader": "Conditions d’utilisation du site Web:",
+  "DropdownQuestions": {
+    "Question1": {
+      "Question": "D'où viennent les données de SeroTracker?",
+      "Answer": "Nous collectons les données à partir des articles évalués par les pairs (peer reviewed), les prépublications, les comptes rendus, et les nouvelles non-publiées. "
+    },
+    "Question2": {
+      "Question": "Comment SeroTracker recueille-t-il des données?  ",
+      "Answer": "Nous effectuons des recherches habituelles sur Google et sur des bases de données telles que Medline, EMBASE, Web of Science, et Europe PMC. De plus, nous acceptons des soumissions d'études - vous pouvez soumettre une source en utilisant le bouton 'Soumettre une source' au-dessus."
+    },
+    "Question3": {
+      "Question": "Comment SeroTracker extrait-t-il des données de ses sources?  ",
+      "Answer": "Nous avons une équipe de chercheurs qui ont une formation en sciences de la santé et en épidémiologie. Les membres de notre 'équipe révisent les études et enregistrent manuellement les valeurs de séroprévalence dans nos base de données sur AirTable, notre logiciel de gestion. Les processus et les règles que nous suivons chez SeroTracker pour extraire les données sont disponibles dans le protocole et le document dictionnaire des données."
+    },
+    "Question4": {
+      "Question": "Comment les données sont-elles visualisées sur la carte interactive?  ",
+      "Answer": "Les données qui sont sur AirTable sont exécutées automatiquement à travers une pipeline de logiciels. Les données sont vérifiées et les informations supplémentaires (telles que l’emplacement géographique de l'étude) sont ajoutées. Ces nouvelles données sont retenues dans un logiciel séparé - utilisé par le page Explore."
+    },
+    "Question5": {
+      "Question": "Est-ce que je peux utiliser les données de SeroTracker pour effectuer ma propre analyse?  ",
+      "Answer": "Absolument! Notre base de données est gratuite pour tout le monde. Vous pouvez télécharger notre document .csv complet avec le bouton 'CSV' au-dessus. Avant de vous fournier ces données, nous vous demandons de compléter un questionnaire avec votre rôle, votre affiliation académique (si pertinent), et le type de recherche que vous faites. Cette information nous aide beaucoup à créer les données les plus utiles pour vous."
+    },
+    "Question6": {
+      "Question": "Est-ce que je dois être un utilisateur de AirTable pour utiliser les données de SeroTracker?  ",
+      "Answer": "Non. Bien que nos données soient présentées dans un format AirTable, vous pouvez facilement le transformer en format Excel ou en autres formats. "
+    },
+    "Question7": {
+      "Question": "Comment est-ce que les variables doivent être interprétées?",
+      "Answer": "Veuillez consulter notre dictionnaire de données (avec le bouton associé au dessus) pour les explications de nos variables, types des données, et descriptions. Il possède aussi de l’information à propos de notre collection de données. Le document est structuré de manière  à faciliter la compréhension de notre base des données. "
+    },
+    "Question8": {
+      "Question": "Comment les données de SeroTracker ont-elles été utilisées par les autres?",
+      "Answer": {
+        "Part1": "Les données de SeroTracker sont utilisées par beaucoup de professionnels de la santé publique et par les agences de santé telles que l’Organisation Mondial de la Santé, et l’Agence de la Santé Publique du Canada. Dans la section Perspectives de notre site Web, vous pouvez accéder aux rapports, aux articles académiques, et aux nouvelles/médias avec SeroTracker. Notre",
+        "Part2": "la plus récente analyse la séroprévalence mondiale de janvier à décembre 2020."
+      },
+      "Links": {
+        "Link1": "https://www.medrxiv.org/content/10.1101/2020.11.17.20233460v2"
+      },
+      "LinkTexts": {
+        "LinkText1": "publication"
+      }
+    }
+  },
   "DownloadCsv": "Télécharger CSV",
   "EconomicsTeam": "Équipe économique",
   "EndDate": "Date de fin",
@@ -170,15 +216,15 @@
   "ExecutiveDirector": "Directeur général",
   "Explore": "Explorer",
   "ExploreBlurb": {
-    "FirstParagraph": "Nous menons un examen systématique du SRAS-CoV-2 au niveau mondial et nos résultats d'enquêtes sérologiques sont visualisés sur ce tableau de bord",
-    "SecondParagraph": "Vous pouvez configurer les données affichées utilisant le barre 'filtre' à droite, et consulter la liste complète des études que nous suivons sur la page 'Les données'"
+    "FirstParagraph": "SeroTracker est un tableau de bord et une plate-forme de données pour les enquêtes sérologiques sur le SRAS-CoV-2. Les anticorps contre le SRAS-CoV-2, le virus qui cause la COVID-19, indiquent une infection ou une vaccination antérieure. Nous menons une revue systématique continue pour suivre les enquêtes sérologiques (efforts de surveillance basés sur les tests d’anticorps) à travers le monde, et nous visualisons les résultats sur ce tableau de bord.",
+    "SecondParagraph": "Vous pouvez configurer les données affichées utilisant le barre 'filtre' à droite, et consulter la liste complète des études que nous suivons sur la page 'Les données'. "
   },
   "Filter": "Filtrer",
   "FilterTooltip": "Filtrer le fichier de données SeroTracker selon l'emplacement géographique, l'étude, les données démographiques et le type de test. Seules les études correspondant aux filtres sélectionnés seront choisies.",
   "For": "Pour",
   "Footer": {
     "CiteAs": "Citez ceci comme: ",
-    "LastUpdated": "Dernière mise à jour de la base de données",
+    "LastUpdated": "Base de données à jour jusqu'à",
     "LancetInfDis": "Lancet Inf Dis",
     "Article": "article"
   },
@@ -188,6 +234,10 @@
   "Geography": "Géographie",
   "GeographyTooltip": "Sélectionner les pays concernés.",
   "Here": "Ici",
+  "IncludingParticipants": {
+    "PartOne": "dont",
+    "PartTwo": "participants"
+  },
   "IndustryMediaTitles": {
     "UnderstandingVirus": "Understanding the Virus and Its Unanswered Questions",
     "KnowledgeHub": "Knowledge hub developed to track SARS-CoV antibody studies",
@@ -217,11 +267,12 @@
     "OctoberReport": "Rapport d'Octobre - Covid-19 dépistage et d'essais dans le secteur privé du Canada",
     "PreliminaryReport": "Rapport préliminaire - Covid-19 Dépistage et d'essais dans le secteur privé du Canada",
     "SeptemberReport": "Rapport de Septembre - Covid-19 Dépistage et d'essais dans le secteur privé du Canada",
-    "YearInReview2020": "Bilan de l’année 2020 de SeroTracker"
+    "YearInReview2020": "Bilan de l’année 2020 de SeroTracker",
+    "InsuringTheEconomy": "Assurer l'économie contre une deuxième vague de pandémie"
   },
   "ResearchArticleTitles": {
     "PrePrint": "Leçons d'un examen rapide et systématique du début des SRAS-CoV-2 enquêtes sérologiques",
-    "MedRxivPub": "Séroprévalence globale du SRAS-CoV-2 anticorps: une revue systématique et méta-analyse",
+    "MedRxivPub": "Séroprévalence globale des anticorps contre la SRAS-CoV-2: une revue systématique et méta-analyse",
     "LancetID": "SeroTracker: un tableau de bord global de séroprévalence du SRAS-CoV-2"
   },
   "InitInfoModalText": {
@@ -247,16 +298,25 @@
   "Location": "Lieu",
   "Manufacturers": "Fabricants",
   "ManuscriptAndPreprint": "Manuscrit et préimpression",
-  "ManuscriptAppendix": {
-    "ManuscriptAppendixParagraphOne": "méthodes complètes",
-    "ManuscriptAppendixParagraphTwo": "(de l’annexe à notre revue systématique complète et méta-analyse des enquêtes sérologiques SARS-CoV-2)"
+  "ManuscriptAppendixText": {
+    "FirstParagraph": "méthodes complètes",
+    "SecondParagraph": "(de l’annexe à notre revue systématique complète et méta-analyse des enquêtes sérologiques SARS-CoV-2)"
   },
   "Media": "Médias",
-  "Methods": "Méthodes",
-  "MethodsText": {
-    "FirstParagraph": "SeroTracker assure une synthèse systématique mondiale de projets de sérosurveillance du SRAS-CoV-2. Nous filtrons les articles scientifiques, les préimpressions, les rapports gouvernementaux et les articles parus dans les médias afin d'identifier les estimations de prévalence indiquées ci-dessous. Nous mettons à jour nos données avec tous les rapports de séroprévalence que nous avons pu trouver dans nos recherches.",
-    "SecondParagraphPartOne": "Vous pouvez consulter la totalité de nos méthodes",
-    "SecondParagraphPartTwo": "Pour soumettre une étude de séroprévalence du SRAS-CoV-2 que nous n'avions pas encore incluse ci-dessous, veuillez utiliser"
+  "MediaMentions": "Mentions dans les médias",
+  "Months": {
+    "January": "janvier",
+    "February": "février",
+    "March": "mars",
+    "April": "avril",
+    "May": "mai",
+    "June": "juin",
+    "July": "juillet",
+    "August": "août",
+    "September": "septembre",
+    "October": "octobre",
+    "November": "novembre",
+    "December": "décembre"
   },
   "N": "N",
   "Name": "Nom",
@@ -292,6 +352,7 @@
     "PointTwo": "décrivent des études qui n'ont pas encore signalé d'estimations de séroprévalence",
     "Text": "Le tableau ci-dessous décrit nos résultats, y compris des informations détaillées pour chaque étude, chaque estimation de prévalence et les risques de partialité associés."
   },
+  "OurProtocol": "Notre protocole",
   "OurTeam": "Notre équipe",
   "OverallRiskOfBias": "Risque général de partialité",
   "Paper": "Article",
@@ -325,8 +386,10 @@
   "PrivacyPolicy": "Politique de confidentialité",
   "PrivateSectorMonitoringTeam": "Équipe de suivi du secteur privé",
   "Publication": "Publication",
+  "Publications": "Publications",
   "Published": "Publié",
   "References": "Références",
+  "ReferencesTable": "Table de références",
   "RegionalEstimateRange": "Plage d'estimation régionale",
   "RegionalEstimates": "Estimations régionales",
   "RegulatoryApproval": "Autorisation réglementaire",
@@ -357,6 +420,7 @@
   "SeroprevalenceBy": "Séroprévalence par",
   "SeroPrevalenceByCountry": "Estimations cumulatives de séroprévalence dans différents pays",
   "SeroprevalenceScale": "Échelle de séroprévalence",
+  "SeroprevalenceStudies": "etudes de séroprévalence",
   "SeroprevalenceScaleTooltip": "Créé à partir de la transformation par logit de la valeur maximale afin de déterminer les 'coffres'",
   "SeroprevalenceTooltip": {
     "FirstParagraph": "Prévalence d'anticorps contre le SRAS-CoV-2, cumulée dans les filtres que vous avez sélectionnés.",
@@ -417,6 +481,7 @@
   "StudyType": "Type d'étude",
   "SublocalEstimateRange": "Plage d'estimation sous-locale",
   "SublocalEstimates": "Estimations sous-locales",
+  "SubmitASource": "Soumettre un article",
   "Summary": "Résumé",
   "SummaryStatistics": "Statistiques sommaires",
   "TeamLead": "Responsables d'équipes",
@@ -452,6 +517,12 @@
   "ViewFile": "Consulter le fichier",
   "ViewHere": "Consulter ici",
   "Welcome": "Bienvenue à SeroTracker",
+  "WhatWeDoText": {
+    "FirstParagraph": "Chez SeroTracker, nous collectons les données publiées et non publiées de séroprévalence pour informer une revue systématique et méta-analyse du SRAS-CoV-2 au niveau mondial. Les données sont collectées pour l’estimation primaire pour chaque source et certains sous-groupes pertinents. Nos méthodes complètes sont accessibles dans le protocole. ",
+    "SecondParagraph": "Nous produisons les données pour l’usage académique et publique sur notre site Web. Notre objectif est de mettre à jour nos données chaque semaine. Pour l’information supplémentaire en addition du sommaire général qui suit, s'il vous plaît consultez nos méthodes complètes, accessible dans le protocole de SeroTracker. "
+  },
+  "WhoDisclaimerSmall": "",
+  "WhoDisclaimer": "",
   "WhoSerotrackAndPartnersDisclaimerSmall": "Les appellations employées dans la présente publication et la présentation des données qui y figurent n’impliquent de la part de l’OMS, SeroTracker ou les partenaires de SeroTracker aucune prise de position quant au statut juridique des pays, territoires, villes ou zones, ou de leurs autorités, ni quant au tracé de leurs frontières ou limites. Les traits discontinus formés d’une succession de points ou de tirets sur les cartes représentent des frontières approximatives dont le tracé peut ne pas avoir fait l'objet d'un accord définitif.",
   "WhoSerotrackAndPartnersDisclaimer1": " Les appellations employées dans la présente publication et la présentation des données qui y figurent n’impliquent de la part de l’OMS aucune prise de position quant au statut juridique des pays, territoires, villes ou zones, ou de leurs autorités, ni quant au tracé de leurs frontières ou limites. Les traits discontinus formés d’une succession de points ou de tirets sur les cartes représentent des frontières approximatives dont le tracé peut ne pas avoir fait l'objet d'un accord définitif",
   "WhoSerotrackAndPartnersDisclaimer2": "La mention de certaines firmes ou de produits commerciaux dans le matériel publié sur cette plateforme ne signifie pas que ces firmes et ces produits commerciaux sont agréés ou recommandés par l’OMS, SeroTracker ou les partenaires de SeroTracker de préférence à d’autres de nature analogue qui ne sont pas mentionnés. Sauf erreur ou omission, une majuscule initiale indique qu’il s’agit d’un nom déposé. La mention de certains matériels dans cette plateforme ne signifie pas que ces matériels sont agréés ou recommandés par l’OMS, SeroTracker ou les partenaires de SeroTracker, ni que ces derniers ont vérifié les informations contenues dans ces matériels.",

@@ -13,11 +13,10 @@ interface eventSenderProps {
   action: string
 }
 
-let cookieAcceptance = false;
-
 export const sendAnalyticsEvent = (props: eventSenderProps) => {
+  const cookieAcceptance = localStorage.getItem('acceptedCookies');
   if (cookieAcceptance) {
-    ReactGA.event(props)
+    ReactGA.event(props);
   }
 }
 interface Props {

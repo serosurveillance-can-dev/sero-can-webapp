@@ -27,5 +27,6 @@ yarn-error.log*
 .vscode/
 
 #.env
+# DO NOT COMMIT SECRETS
 .env
 load-dotenv.sh

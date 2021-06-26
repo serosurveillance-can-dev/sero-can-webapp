@@ -1,33 +1,33 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { mobileDeviceOrTabletWidth } from "../../../constants";
-import { InsightsCard } from "./InsightsCard";
-import { insightsInfo } from "./InsightsConstants";
+import { PublicationsCard } from "./PublicationsCard";
+import { PublicationsInfo } from "./PublicationsConstants";
 import './styles.scss';
 import Translate from "../../../utils/translate/translateService";
 import Slider from "react-slick";
 
-export default function Insights() {
+export default function Publications() {
   const isMobileDeviceOrTablet = useMediaQuery({ maxDeviceWidth: mobileDeviceOrTabletWidth })
 
   return (
     <div className="col-12 page pb-6">
       <div className={isMobileDeviceOrTablet ? "pb-2 policy-container" : "policy-container static-content"}>
         <h1 className="col-12 p-0 fit">
-          {Translate('Insights')}
+          {Translate('Publications')}
         </h1>
         <h3 className="normal">
           {Translate('ResearchArticles')}
         </h3>
-        { getCarouselOfInsightCards("articles") }
+        { getCarouselOfPublicationsCards("articles") }
         <h3 className="normal">
           {Translate('Reports')}
         </h3>
-        { getCarouselOfInsightCards("reports") }
+        { getCarouselOfPublicationsCards("reports") }
         <h3 className="normal">
-          {Translate('Media')}
+          {Translate('MediaMentions')}
         </h3>
-        { getCarouselOfInsightCards("media") }
+        { getCarouselOfPublicationsCards("media") }
       </div>
     </div>
   )
@@ -62,22 +62,24 @@ const sliderSettings = {
   ]
 };
 
-export type InsightsType = 'articles' | 'reports' | 'media';
+export type PublicationsType = 'articles' | 'reports' | 'media';
 
-const getCarouselOfInsightCards = (type: InsightsType) => {
+const getCarouselOfPublicationsCards = (type: PublicationsType) => {
   return (
     <div className="slider-container">
       <Slider 
         {...sliderSettings}
       >
           {
-            insightsInfo[type].map((insightProps, idx) => {
-              return <InsightsCard
-                date={insightProps.date}
-                img={insightProps.img}
-                titleKey1={insightProps.titleKey1}
-                titleKey2={insightProps.titleKey2}
-                url={insightProps.url} />
+            PublicationsInfo[type].map((publicationsProps, idx) => {
+              return <PublicationsCard
+                day={publicationsProps.day ?? ""}
+                month={publicationsProps.month}
+                year={publicationsProps.year}
+                img={publicationsProps.img}
+                titleKey1={publicationsProps.titleKey1}
+                titleKey2={publicationsProps.titleKey2}
+                url={publicationsProps.url} />
               })
           }
       </Slider>

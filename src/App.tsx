@@ -6,7 +6,7 @@ import NotFoundPage from './components/pages/NotFoundPage';
 import CookiePolicy from "./components/pages/CookiePolicy";
 import Explore from "./components/pages/Dashboard/Explore";
 import Data from './components/pages/Data';
-import Insights from "./components/pages/insights/Insights";
+import Publications from "./components/pages/Publications/Publications";
 import PrivacyPolicy from './components/pages/PrivacyPolicy';
 import TermsOfUse from "./components/pages/TermsOfUse";
 import { CookieBanner } from "./components/shared/CookieBanner";
@@ -153,11 +153,11 @@ function App() {
         <Route path="/:language/TermsOfUse">
           <TermsOfUse />
         </Route>
-        <Route path="/:language/Insights">
-          <Insights />
+        <Route path="/:language/Publications">
+          <Publications />
         </Route>
         <Redirect exact from="/" to={`/${language}/Explore`} />
-        {language && ["About", "Explore", "Analyze", "Data", "PrivacyPolicy", "CookiePolicy", "TermsOfUse", "Insights", "Canada"].map(route =>
+        {language && ["About", "Explore", "Analyze", "Data", "PrivacyPolicy", "CookiePolicy", "TermsOfUse", "Publications", "Canada"].map(route =>
           <Redirect from={`/${route}`} to={`${language}/${route}`}></Redirect>)}
         <Route>
           <NotFoundPage/>

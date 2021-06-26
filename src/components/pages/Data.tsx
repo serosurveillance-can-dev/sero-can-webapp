@@ -1,164 +1,164 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
-import { Loader, Segment } from "semantic-ui-react";
+import {
+  Segment,
+  Button,
+  Accordion,
+  Icon,
+  AccordionTitleProps,
+} from "semantic-ui-react";
 import { isMaintenanceMode, mobileDeviceOrTabletWidth } from "../../constants";
-import { getEmptyFilters } from "../../context";
-import httpClient from "../../httpClient";
 import { sendAnalyticsEvent } from "../../utils/analyticsUtils";
-import Translate from "../../utils/translate/translateService";
-import StudiesTable from "../shared/references/StudiesTable";
+import Translate, {
+  TranslateObject,
+} from "../../utils/translate/translateService";
 import "./static.css";
 import MaintenanceModal from "../shared/MaintenanceModal";
+interface DropdownQuestion {
+  Question: string;
+  Answer: string | object;
+  Links?: { [index: string]: string };
+  LinkTexts?: { [index: string]: string };
+}
+
+const clickLink = (link: string) => {
+  sendAnalyticsEvent({
+    category: "Data Link Click",
+    action: "click",
+    label: link,
+  });
+};
+
+function DataButtons() {
+  const buttonLabels = [
+    {
+      label: "OurProtocol",
+      link: "https://docs.google.com/document/d/1NYpszkr-u__aZspFDFa_fa4VBzjAAAAxNxM1rZ1txWU/edit",
+    },
+    {
+      label: "DataDictionary",
+      link: "https://docs.google.com/spreadsheets/d/1KQbp5T9Cq_HnNpmBTWY1iKs6Etu1-qJcnhdJ5eyw7N8/edit?usp=sharing",
+    },
+    {
+      label: "ChangeLog",
+      link: "https://airtable.com/shrxpAlF6v0LeRYkA",
+    },
+    {
+      label: "DownloadCsv",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSdGd_wlq8YSyVPs2AOi1VfvxuLzxA8Ye5I3HkQwW_9yrumsCg/viewform",
+    },
+    {
+      label: "SubmitASource",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSdvNJReektutfMT-5bOTjfnvaY_pMAy8mImpQBAW-3v7_B2Bg/viewform",
+    },
+  ];
+  const buttons = buttonLabels.map((buttonLabel, index) => (
+    <Button key={index} color="blue" size="large" className="mb-2 mr-2">
+      <a
+        onClick={() => clickLink(buttonLabel.label)}
+        target="_blank"
+        rel="noreferrer"
+        href={buttonLabel.link}
+      >
+        <p className="button-text"> {Translate(buttonLabel.label)}</p>
+      </a>
+    </Button>
+  ));
+
+  return <div>{buttons}</div>;
+}
+
+function DataDropdowns() {
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const handleClick = (e: any, data: AccordionTitleProps) => {
+    const { index } = data;
+    const newIndex = activeIndex === index ? -1 : index;
+    setActiveIndex(newIndex as number);
+  };
+
+  const dropdownContent = Object.entries(
+    TranslateObject("DropdownQuestions")
+  ).map((dropdownQuestion: [string, DropdownQuestion], index: number) => (
+    <Accordion key={index} fluid styled>
+      <Accordion.Title
+        active={activeIndex === index}
+        index={index}
+        onClick={handleClick}
+        className="accordion-title"
+      >
+        <Icon name="dropdown" /> {dropdownQuestion[1]["Question"]}
+      </Accordion.Title>
+      <Accordion.Content active={activeIndex === index}>
+        {dropdownQuestion[1]["Links"] ? (
+          <div>
+            {Object.entries(dropdownQuestion[1]["Answer"]).map(
+              (answer, index) => (
+                <p className="no-space">
+                  {" "}
+                  {answer[1]}{" "}
+                  <a
+                    href={dropdownQuestion[1]["Links"]?.[`Link${index + 1}`]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {dropdownQuestion[1]["LinkTexts"]?.[`LinkText${index + 1}`]}
+                  </a>
+                </p>
+              )
+            )}
+          </div>
+        ) : (
+          <p>{dropdownQuestion[1]["Answer"]}</p>
+        )}
+      </Accordion.Content>
+    </Accordion>
+  ));
+  return <div>{dropdownContent}</div>;
+}
 
 export default function Data() {
   const isMobileDeviceOrTablet = useMediaQuery({
     maxDeviceWidth: mobileDeviceOrTabletWidth,
   });
-  const [allRecords, setAllRecords] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // note: using IIFE here so that we can
-    // have async/await behaviour in useEffect
-    (async () => {
-      await getAllRecords();
-      setIsLoading(false);
-    })();
-  }, []);
-
-  const clickLink = (link: string) => {
-    sendAnalyticsEvent({
-      category: "Data Link Click",
-      action: "click",
-      label: link,
-    });
-  };
-
-  const getAllRecords = async () => {
-    const api = new httpClient();
-    // TODO: Figure out a better place to put this so we don't keep updating this either
-    const res = await api.getAirtableRecords(getEmptyFilters());
-    setAllRecords(res);
-  };
 
   return (
     <>
       <div className="col-12 page">
-        <div className={isMobileDeviceOrTablet ? "" : "static-content"}>
-          <h1>{Translate("Methods")}</h1>
-          <p>{Translate("MethodsText", ["FirstParagraph"])}</p>
-          <p>
-            {Translate("MethodsText", ["SecondParagraphPartOne"])}
-            <a
-              target="_blank"
-              onClick={() => clickLink("Methods")}
-              rel="noopener noreferrer"
-              href="https://docs.google.com/document/d/1NYpszkr-u__aZspFDFa_fa4VBzjAAAAxNxM1rZ1txWU/edit?usp=sharing"
-            >
-              {Translate("Here", null, null, [true, false]).toLocaleLowerCase()}
-              .
-            </a>
-            {Translate("MethodsText", ["SecondParagraphPartTwo"], null, [
-              true,
-              false,
-            ])}
-            <a
-              rel="noopener noreferrer"
-              onClick={() => clickLink("Study Submission")}
-              target="_blank"
-              href="https://forms.gle/XWHQ7QPjQnzQMXSz8"
-            >
-              {Translate("ThisForm", null, null, [true, false]).toLowerCase()}
-            </a>
-            .
-          </p>
-          <h1>{Translate("ManuscriptAndPreprint")}</h1>
-          <p>
-            {Translate("PaperText", null, null, [false, true])}
-            <a
-              target="_blank"
-              onClick={() => clickLink("MedRXIV")}
-              rel="noopener noreferrer"
-              href="https://www.medrxiv.org/content/10.1101/2020.05.10.20097451v1"
-            >
-              medRxiv
-            </a>
-            .
-          </p>
-          <p>
-            {Translate("PaperTextTwo", null, null, [false, true])}
-            <a
-              target="_blank"
-              onClick={() => clickLink("LancetID")}
-              rel="noopener noreferrer"
-              href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30631-9/fulltext#%20"
-            >
-              <i>{Translate("LancetID")}</i>
-            </a>
-            .
-          </p>
-          <h1>{Translate("OurData")}</h1>
-          <p>{Translate("OurDataText", ["Text"])}</p>
-          <p>
-            {Translate(
-              "DataDictionaryContent",
-              ["DataDictionaryContentParagraphOne"],
-              null,
-              [false, true]
-            )}
-            <a
-              rel="noopener noreferrer"
-              onClick={() => clickLink("Manuscript Appendix")}
-              target="_blank"
-              href="https://drive.google.com/file/d/1d8-U0NgjVBTDzdj3rbAYfZyYVp0HRhgj/view?usp=sharing"
-            >
-              {Translate(
-                "ManuscriptAppendix",
-                ["ManuscriptAppendixParagraphOne"],
-                null,
-                [false, true]
-              )}
-            </a>
-            {Translate(
-              "ManuscriptAppendix",
-              ["ManuscriptAppendixParagraphTwo"],
-              null,
-              [false, true]
-            )}
-            {Translate(
-              "DataDictionaryContent",
-              ["DataDictionaryContentParagraphTwo"],
-              null,
-              [false, true]
-            )}
-            <a
-              rel="noopener noreferrer"
-              onClick={() => clickLink("Data Dictionary")}
-              target="_blank"
-              href="https://docs.google.com/spreadsheets/d/1KQbp5T9Cq_HnNpmBTWY1iKs6Etu1-qJcnhdJ5eyw7N8/edit?usp=sharing"
-            >
-              {Translate("DataDictionary")}
-            </a>
-            .
-          </p>
-          <p>
-            {Translate("DataDownload", null, null, [false, true])}
-            <Link to="/About">{Translate("SeroTrackerTeam")}</Link>.
-          </p>
-        </div>
-
         <div
           className={
-            isMobileDeviceOrTablet ? "pb-3 pt-3" : "pb-3 pt-3 reference-table"
+            isMobileDeviceOrTablet ? "static-mobile" : "static-content"
+          }
+        >
+          <h1 className={isMobileDeviceOrTablet ? "pt-3" : "pt-0"}>
+            {Translate("OurData")}
+          </h1>
+          <p>{Translate("WhatWeDoText", ["FirstParagraph"])}</p>
+          <p>{Translate("WhatWeDoText", ["SecondParagraph"])}</p>
+          <br></br>
+          <DataButtons />
+          <br></br>
+          <DataDropdowns />
+          <br></br>
+          <h1 className="mb-0">{Translate("ReferencesTable")}</h1>
+        </div>
+        <div
+          className={
+            isMobileDeviceOrTablet
+              ? "pb-3 pt-3 static-mobile"
+              : "pb-3 pt-3 static-content"
           }
         >
           <Segment>
-            <Loader indeterminate active={isLoading} />
-            <StudiesTable
-              dataRecords={allRecords}
-              showAllStudies={false}
-            ></StudiesTable>
+            <iframe
+              title="References Table"
+              className="iframe-style"
+              src={
+                isMobileDeviceOrTablet
+                  ? "https://airtable.com/embed/shrtuN7F8x4bdkdDA?backgroundColor=cyan&layout=card&viewControls=on"
+                  : "https://airtable.com/embed/shrtuN7F8x4bdkdDA?backgroundColor=cyan&viewControls=on"
+              }
+            ></iframe>
           </Segment>
         </div>
 
