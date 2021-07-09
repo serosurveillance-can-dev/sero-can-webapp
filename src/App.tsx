@@ -18,7 +18,8 @@ import httpClient from "./httpClient";
 import { LanguageType, PageStateEnum } from "./types";
 import { initializeData } from "./utils/stateUpdateUtils";
 import { setLanguageType } from "./utils/translate/translateService";
-import { ANALYZE_URLS, CANADA_URLS } from "./constants";
+import { ANALYZE_URLS } from "./constants";
+import Partnerships from "components/pages/Partnerships/Partnerships";
 
 function App() {
   const [{ language, explore }, dispatch] = useContext(AppContext);
@@ -127,19 +128,8 @@ function App() {
             }}
           />
         </Route>
-        <Route path="/:language/Canada">
-          <TableauEmbed
-            url={CANADA_URLS}
-            key={`CanadianTableau${language}`}
-            desktopOptions={{
-              width: "80vw",
-              height: "4100px"
-            }}
-            mobileOptions={{
-              width: "90vw",
-              height: "2800px"
-            }}
-          />
+        <Route path="/:language/Partnerships/:name">
+          <Partnerships />
         </Route>
         <Route path="/:language/Data">
           <Data />

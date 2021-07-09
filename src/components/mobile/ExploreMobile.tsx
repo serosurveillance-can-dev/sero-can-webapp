@@ -1,6 +1,7 @@
 import { faBars, faFilter, faTimes} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, {  useState } from "react";
+import React, {  useState, useContext } from "react";
+import { AppContext } from "context";
 import { Menu, Segment, Sidebar } from "semantic-ui-react";
 import { PageStateEnum } from "../../types";
 import MapboxMap from "components/map/MapboxMap"
@@ -16,6 +17,7 @@ import WhoLogo from "components/shared/WhoLogo"
 export default function ExploreMobile() {
   const [showMobileFilters, setShowFilters] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
+  const [state] = useContext(AppContext);
 
   const handleFilterToggle = (showMobile: boolean, showSummary: boolean) => {
     setShowFilters(showMobile);
@@ -79,7 +81,14 @@ export default function ExploreMobile() {
           <div className="info flex legend center-item">
             <Legend/>
           </div>
-          <MapboxMap />
+          <MapboxMap 
+              countriesConfig={{
+                estimateGradePrevalences: state.explore.estimateGradePrevalences
+              }} 
+              studyPinsConfig={{
+                records: state.explore.records
+              }}
+              />
           {/* Icons */}
           <div className="icon-container"
             style={{ top: 10, right: 15 }}>

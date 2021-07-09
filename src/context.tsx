@@ -53,21 +53,10 @@ const initialState: State = {
   updatedAt: "",
   showCookieBanner: false,
   countries: [],
-  showCountryHover: true,
 };
 
 const reducer = (state: State, action: Record<string, any>): State => {
   switch (action.type) {
-    case "SHOW_COUNTRY_HOVER":
-      return {
-        ...state,
-        showCountryHover: true,
-      };
-    case "HIDE_COUNTRY_HOVER":
-      return {
-        ...state,
-        showCountryHover: false,
-      };
     case "CLOSE_COOKIE_BANNER":
       return {
         ...state,

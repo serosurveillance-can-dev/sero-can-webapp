@@ -1,6 +1,7 @@
 import React from "react";
 import { RegionalPrevalenceEstimate } from "types";
 import { LanguageType } from "types";
+import { Button } from 'semantic-ui-react'
 import Translate, { getCountryName } from 'utils/translate/translateService';
 
 const createPopupGeographySection = (regionalEstimate: RegionalPrevalenceEstimate, title: string) => {
@@ -9,7 +10,7 @@ const createPopupGeographySection = (regionalEstimate: RegionalPrevalenceEstimat
   const regionString = minString === maxString ? minString : `${minString} - ${maxString}`;
 
   return (
-    <div key={Math.random()} className={"flex fit column popup-heading"}>
+    <div key={Math.random()} className={"flex fit column popup-heading mt-2"}>
       <div key={Math.random()} className="popup-heading pt-1">{title}</div>
       <div key={Math.random()} className="col-12 p-0 popup-text">{Translate('EstimateRange')}: <b>{regionString}</b></div>
       <div key={Math.random()} className="col-12 p-0 popup-text">{Translate('NumberEstimates')}: <b>{regionalEstimate.numEstimates}</b></div>
@@ -17,7 +18,7 @@ const createPopupGeographySection = (regionalEstimate: RegionalPrevalenceEstimat
   )
 }
 
-const CountryPopup = (country : any, language : LanguageType) => {
+const CountryPopup = (country : any, language : LanguageType, onDetailsClick?: any) => {
 
   const properties = country?.state
 
@@ -32,13 +33,17 @@ const CountryPopup = (country : any, language : LanguageType) => {
     addRegion(properties.sublocalEstimate, Translate('SublocalEstimates'));
 
     return (
-      <div className="col-12 p-0 flex column country-popup" >
+      <div className="col-12 p-0 flex column country-popup popup-content" >
         <div className="fit popup-title">{getCountryName(properties.geographicalName, language, "CountryOptions")}</div>
         <div className="flex column fit popup-heading">
           <div className="fit popup-text">{Translate("TestsAdministered")}: <b>{properties?.testsAdministered}</b></div>
           <div className="fit popup-text">{Translate('NumSeroprevalenceEstimates')}: <b>{properties?.numberOfStudies}</b></div>
         </div>
         {regions.map((o) => createPopupGeographySection(o.Region, o.Name))}
+        {onDetailsClick ? 
+        <Button className="not-found-button mt-2" onClick={()=>{ onDetailsClick()}}>
+          {Translate("ViewPartnership")}
+        </Button> : ""}
       </div>)
   };
 

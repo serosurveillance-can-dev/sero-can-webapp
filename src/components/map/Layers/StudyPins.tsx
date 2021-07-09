@@ -2,12 +2,12 @@ import { useState, useEffect, useContext } from "react"
 import ReactDOMServer from "react-dom/server";
 import StudyPopup from "components/map/Popups/StudyPopup";
 import { AppContext } from "context";
-import { AirtableRecord } from "types";
+import { AirtableRecord, StudyPinsMapConfig } from "types";
 import httpClient from "httpClient";
 import usePrevious from "utils/usePrevious"
 import mapboxgl from "mapbox-gl";
 import generateSourceFromRecords from "utils/GeoJsonGenerator";
-import MapConfig from "components/map/MapConfig"
+import {Expressions} from "components/map/MapConfig"
 
 const togglePinBlur = (map: mapboxgl.Map, selectedPinId?: string) => {
   const features = map.querySourceFeatures('study-pins', {
@@ -16,19 +16,22 @@ const togglePinBlur = (map: mapboxgl.Map, selectedPinId?: string) => {
   
   features.forEach(x => {
     const isBlurred = (selectedPinId === x?.id || selectedPinId === undefined) ? false : true
-    map.setFeatureState(
-      {
-        source: "study-pins",
-        id: x?.id,
-      },
-      {
-        isBlurred: isBlurred,
-      }
-    );
+    if (x && x.id)
+    {
+      map.setFeatureState(
+        {
+          source: "study-pins",
+          id: x.id,
+        },
+        {
+          isBlurred: isBlurred,
+        }
+      );
+    }
   })
 }
 
-const StudyPins = (map: mapboxgl.Map | undefined, records: AirtableRecord[]) => {
+const StudyPins = (map: mapboxgl.Map | undefined, {records}: StudyPinsMapConfig) => {
 
   const [state] = useContext(AppContext);
   const [api] = useState(new httpClient());
@@ -44,7 +47,7 @@ const StudyPins = (map: mapboxgl.Map | undefined, records: AirtableRecord[]) => 
           id: "study-pins",
           type: "circle",
           source: "study-pins",
-          paint: MapConfig.Studies as mapboxgl.CirclePaint
+          paint: Expressions.Studies as mapboxgl.CirclePaint
         });
       }
       else{
@@ -89,8 +92,12 @@ const StudyPins = (map: mapboxgl.Map | undefined, records: AirtableRecord[]) => 
             pinPopup = new mapboxgl.Popup({ offset: 5, className: "pin-popup" })
               .setLngLat(e.lngLat)
               .setHTML(ReactDOMServer.renderToString(StudyPopup(record)))
-              .setMaxWidth("300px")
               .addTo(map);
+            map.flyTo({
+              center: e.lngLat,
+              curve: 0.5,
+              speed: 0.5,
+              });
             pinPopup.on("close",()=>{
               setSelectedPinId(undefined);
               togglePinBlur(map);
@@ -98,16 +105,6 @@ const StudyPins = (map: mapboxgl.Map | undefined, records: AirtableRecord[]) => 
           }
         });
       });
-
-      /*
-      map.on('click', function(e) {
-        if (e.point !== pinCoords)
-        {
-          setSelectedPinId(undefined);
-          togglePinBlur(map);
-        }
-      });
-      */
 
       map.on("mouseenter", "study-pins", function () {
         map.getCanvas().style.cursor = "pointer";
@@ -132,15 +129,18 @@ const StudyPins = (map: mapboxgl.Map | undefined, records: AirtableRecord[]) => 
         );
       }
 
-      map.setFeatureState(
-        {
-          source: "study-pins",
-          id: selectedPinId,
-        },
-        {
-          isSelected: true,
-        }
-      );
+      if(selectedPinId)
+      {
+        map.setFeatureState(
+          {
+            source: "study-pins",
+            id: selectedPinId,
+          },
+          {
+            isSelected: true,
+          }
+        );
+      }
     }
   }, [map, selectedPinId, prevSelectedPinId]);
 

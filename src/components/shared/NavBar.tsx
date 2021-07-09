@@ -9,7 +9,7 @@ import { AppContext } from '../../context'
 import { LanguageType } from '../../types'
 import Translate from '../../utils/translate/translateService'
 import { withLocaleUrl } from '../../utils/utils'
-
+import PartnershipsDropDown from './PartnershipsDropDown'
 
 export const NavBar = () => {
   const [tab, setTab] = useState("");
@@ -91,6 +91,9 @@ export const NavBar = () => {
               <FontAwesomeIcon icon={faUsers} size="lg" /> :
               Translate('About')}
           </Link>
+        </div>
+        <div className={getTabClass('/Partnerships')}>
+          <PartnershipsDropDown />
         </div>
         <div className={getTabClass('/Language') + " cursor"} onClick={() => changeLanguages()}>
           <div>

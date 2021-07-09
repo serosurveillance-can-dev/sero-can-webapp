@@ -1,6 +1,6 @@
-import mapboxgl from "mapbox-gl";
+import mapboxgl, { LngLat } from "mapbox-gl";
 import httpClient from "../httpClient";
-import MapConfig from "components/map/MapConfig"
+import { Expressions } from "components/map/MapConfig"
 
 // Params: url - to an esri vector tile service
 // Returns: Modified style object with attributes for Mapbox GL JS compatability 
@@ -32,7 +32,7 @@ export async function getEsriVectorSourceStyle(url: string) {
     const l = style.layers[0] as mapboxgl.Layer;
     if (l.id === "Countries") {
       source.promoteId = { "Countries": "CODE" }
-      l.paint = MapConfig.Countries
+      l.paint = Expressions.Countries
     }
 
     return style
@@ -59,3 +59,41 @@ export function addEsriLayersFromVectorSourceStyle(style: any, map: mapboxgl.Map
   });
 }
 }
+
+function getBoundingBox(coordinates: any[]) {
+  let bbox: any = {
+    xMin: undefined,
+    xMax: undefined,
+    yMin: undefined,
+    yMax: undefined,
+  }
+
+  coordinates.forEach((c)=>{
+    const longitude = c[0];
+    const latitude = c[1];
+    bbox.xMin = Math.min(bbox.xMin, longitude);
+    bbox.xMax = Math.max(bbox.xMax, longitude);
+    bbox.yMin = Math.min(bbox.yMin , latitude);
+    bbox.yMax = Math.max(bbox.yMax , latitude);
+  })
+  return bbox;
+}
+
+export function getFeatureBoundingBox(feature: GeoJSON.Feature): mapboxgl.LngLatBounds | undefined {
+  let extent = undefined
+  
+  if(feature.geometry.type === 'Polygon')
+  {
+    extent = getBoundingBox(feature.geometry.coordinates[0]);
+  }
+  else if (feature.geometry.type === 'MultiPolygon')
+  {
+    extent = getBoundingBox(feature.geometry.coordinates[0][0]);
+  }
+
+  return extent ? new mapboxgl.LngLatBounds(
+    new mapboxgl.LngLat(extent.xMin, extent.yMin),
+    new mapboxgl.LngLat(extent.xMax, extent.yMax)
+    ) : undefined;
+}
+

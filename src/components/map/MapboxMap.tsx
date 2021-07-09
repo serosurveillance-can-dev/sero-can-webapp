@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useRef, useState, Dispatch } from "react";
 import { AppContext } from "context";
-import { getEsriVectorSourceStyle, addEsriLayersFromVectorSourceStyle } from "utils/EsriMappingUtil";
+import { getEsriVectorSourceStyle, addEsriLayersFromVectorSourceStyle } from "utils/MappingUtil";
 import Countries from "components/map/Layers/Countries";
 import StudyPins from "components/map/Layers/StudyPins";
-import { MapUrlResource } from 'components/map/MapConfig'
+import { MapResources, DefaultMapboxMapOptions } from 'components/map/MapConfig'
+import { CountriesMapConfig, StudyPinsMapConfig } from "types";
 // @ts-ignore
 // eslint-disable-next-line
 import mapboxgl, { Style } from '!mapbox-gl';
@@ -17,7 +18,7 @@ mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY as string;
 
 function mapOnLoad(map: mapboxgl.Map, dispatch: Dispatch<any>) {
-  getEsriVectorSourceStyle(MapUrlResource.WHO_COUNTRY_VECTORTILES).then((style: mapboxgl.Style) => {
+  getEsriVectorSourceStyle(MapResources.WHO_COUNTRY_VECTORTILES).then((style: mapboxgl.Style) => {
     addEsriLayersFromVectorSourceStyle(style, map);
     const styleJson: Style = map.getStyle();
     let CountryPolygonsMoved = false;
@@ -42,7 +43,13 @@ function mapOnLoad(map: mapboxgl.Map, dispatch: Dispatch<any>) {
   });
 }
 
-const MapboxGLMap = (): any => {
+interface MapboxMapProps {
+  mapConfig?: any
+  countriesConfig: CountriesMapConfig,
+  studyPinsConfig: StudyPinsMapConfig
+}
+
+const MapboxMap = ( {mapConfig, countriesConfig, studyPinsConfig}: MapboxMapProps ): any => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [state, dispatch] = useContext(AppContext);
   const [map, setMap] = useState<mapboxgl.Map | undefined>(undefined);
@@ -50,17 +57,18 @@ const MapboxGLMap = (): any => {
   // Creates map, only runs once
   useEffect(() => {
     (async () => {
-      const baseMapStyle = await getEsriVectorSourceStyle(MapUrlResource.WHO_BASEMAP);
+      const baseMapStyle = await getEsriVectorSourceStyle(MapResources.WHO_BASEMAP);
 
-      const m = new mapboxgl.Map({
-        //@ts-ignore
-        container: mapContainerRef.current,
-        style: baseMapStyle,
-        center: [10, 30],
-        zoom: 2,
-        attributionControl: false,
-        antialias: true// enables MSAA antialiasing, to help make dotted line WHO borders more visible
-      });
+      const mergedOptions = { // Merges options together to configure map
+        ...{
+          container: mapContainerRef.current,
+          style: baseMapStyle,
+        },
+        ...DefaultMapboxMapOptions,
+        ...mapConfig,
+      };
+
+      const m = new mapboxgl.Map(mergedOptions);
 
       m.on("load", () => {
         mapOnLoad(m, dispatch);
@@ -72,14 +80,14 @@ const MapboxGLMap = (): any => {
   }, []);
 
   // Adds country data to map and binds pin behaviour with map popups
-  Countries(map, state.explore.estimateGradePrevalences);
+  Countries(map, countriesConfig);
   // Adds pins to map and binds pin behaviour with map popups
-  StudyPins(map, state.explore.records);
+  StudyPins(map, studyPinsConfig);
 
   return (
     //@ts-ignore
-    <div className="mapContainer w-100" ref={(el) => (mapContainerRef.current = el)}></div>
+    <div className="w-100 h-100" ref={(el) => (mapContainerRef.current = el)}></div>
   );
 };
 
-export default MapboxGLMap;
+export default MapboxMap;

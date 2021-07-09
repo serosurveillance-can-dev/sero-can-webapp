@@ -355,6 +355,10 @@
   "Paper": "Paper",
   "PaperText": "Our first manuscript, describing lessons from serosurveys up to May 1, can be found on",
   "PaperTextTwo": "More information about our dashboard can be found in",
+  "Partnerships": "Partnerships",
+  "PartnershipsList": {
+    "Canada": "Canada (CITF)"
+  },
   "PlannedSerosurveys": "Planned Serosurveys",
   "Population": "Population",
   "PopulationGroup": "Population group",
@@ -429,6 +433,7 @@
   },
   "Serosurveys": "Serosurveys",
   "SerosurveysReportingPrevalence": "Serosurveys Reporting Prevalence",
+  "SeroprevalenceEstimatesInRegion": "Seroprevalence estimates in NAME by their geographic area",
   "SeroTrackerTeam": "SeroTracker team",
   "Settings": "Settings",
   "Sex": "Sex",
@@ -456,6 +461,10 @@
   },
   "StartDate": "Start Date",
   "Status": "Status",
+  "PartnershipsView": {
+    "MapNote1": "The map displays estimates for all geographic based estimates. Pins are arranged around the center of their geographic location(s).",
+    "MapNote2": "Case and death counts (at the midpoint in study sampling) are taken at a national level from WEBSITE (subsource: coronavirus.jhu.edu)"
+  },
   "StudiesPerPage": "Studies per page",
   "Study": "Study",
   "StudyDetailsAuthorString": {
@@ -517,6 +526,7 @@
   "TotalTests": "Total Tests",
   "UniversityOf": "University of NAME",
   "UseOfData": "Use of this data is governed by SeroTracker's",
+  "ViewPartnership": "View Partnership",
   "ViewFile": "View File",
   "ViewHere": "View Here",
   "Welcome": "Welcome to SeroTracker",

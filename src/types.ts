@@ -58,6 +58,10 @@ export type Filters = {
   estimate_grade: any;
 };
 
+export type StudiesFilters = {
+  country: any;
+};
+
 export type FilterType =
   | "country"
   | "population_group"
@@ -91,7 +95,6 @@ export type State = {
   language: LanguageType;
   showCookieBanner: boolean;
   countries: any;
-  showCountryHover: boolean;
 };
 
 export type StartDates = {
@@ -119,6 +122,15 @@ export type PageState = {
   legendLayers: LegendLayers;
 };
 
+export type CountriesMapConfig = {
+  estimateGradePrevalences?: EstimateGradePrevalence[];
+  countryFocus?: string;
+}
+
+export type StudyPinsMapConfig = {
+  records: AirtableRecord[];
+}
+
 export type EstimateGradePrevalence = {
   testsAdministered: number;
   geographicalName: string;
@@ -134,6 +146,31 @@ export type RegionalPrevalenceEstimate = {
   maxEstimate: number;
   minEstimate: number;
   numEstimates: number;
+};
+
+export type Partnerships = { 
+  [key: string]: Partnership 
+};
+
+export type Partnership = {
+  iso3: string;
+  routeName: string,
+  tableauKey: string;
+  tableauUrl: { [language: string]: string }
+  mapboxMapOptions: any
+};
+
+export type PartnershipMapOptions = {
+/**
+ * Bounds represent the initial extent of the map by 2 coordinates
+ * The first coordinate is the Southwest extent
+ * The second coordinate is the Northeast extent
+ */
+  bounds?: [[number, number],[number, number]],
+  /**
+ * maxBounds represents the hard limit to map extent, users cannot move past these
+ */
+  maxBounds?: [[number, number],[number, number]],
 };
 
 export enum AggregationFactor {

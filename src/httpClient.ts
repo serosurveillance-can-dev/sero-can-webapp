@@ -1,4 +1,4 @@
-import { AggregatedRecord, AggregationFactor, AirtableRecord, Filters, FilterType } from "./types";
+import { AggregatedRecord, AggregationFactor, AirtableRecord, Filters, FilterType, StudiesFilters } from "./types";
 import { formatDates } from "./utils/utils";
 import {parseISO, format } from "date-fns";
 
@@ -128,6 +128,25 @@ export default class httpClient {
             return record;
         });
         // Remove timestamp from updated at string
+
+        return filtered_records;
+    }
+
+    async getAirtableRecordsForCountry(filters: StudiesFilters) {
+
+        const reqBody: Record<string, any> = {
+            filters: filters,
+            include_subgeography_estimates: true,
+        }
+
+        const response = await this.httpPost('/data_provider/records', reqBody)
+        if (!response) {
+            return [];
+        }
+
+        const filtered_records = response.map((item: Record<string, any>) => {
+            return this.responseToRecord(item) as AirtableRecord;
+        });
 
         return filtered_records;
     }
