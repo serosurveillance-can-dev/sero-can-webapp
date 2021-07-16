@@ -13,7 +13,6 @@ export default function RightSidebar({page}: SideBarProps) {
     <div className="justify-content-between fill sidebar-container right-sidebar">
       <div className="filters-container mb-3">
         <Filters page={page}/>
-        <Datepicker page={page}/>
       </div>
     </div>
   )

@@ -69,53 +69,42 @@ export default class httpClient {
 
     async getAllFilterOptions() {
         const response = await this.httpGet('/data_provider/filter_options', true);
-        const options: Record<string, any> = {}
-        for(let k in response){
-            // Currently no need for max and min date options
-            if(k !== "max_date" && k !== "min_date"){
-                // For all the other options, use a Set instead of list
-                // Because that's the data model our filters are used to
-                // TODO: refactor so we can keep filter options in a list
-                options[k] = new Set(response[k]);
-            }
-        }
+        const options = {...response} as Record<string, any>;
         // We know that only these 3 isotypes will ever be reported, thus we can hardcode
-        options.isotypes_reported = new Set(["IgG", "IgA", "IgM"]);
+        options.isotypes_reported = ["IgG", "IgA", "IgM"];
         const updatedAt = format(parseISO(response.updated_at), "yyyy/MM/dd");
         const maxDate = parseISO(response.max_date);     
         const minDate = parseISO(response.min_date);
+        delete options.min_date;
+        delete options.max_date;
         return { options, updatedAt, maxDate, minDate };
     }
-    
-    async getAirtableRecords(filters: Filters,
-        only_explore_columns: Boolean =false,
-        sorting_key = "denominator_value",
-        reverse= false) {
-        const reqBodyFilters: Record<string, string[]> = {}
 
-        Object.keys(filters).forEach((o: string) => {
-            const filter = Array.from(filters[o as FilterType]);
-            if (o !== 'publish_date') {
-                reqBodyFilters[o] = filter as string[]
-            }
-        });
 
-        const explore_columns = ["source_id", "estimate_grade", "pin_latitude", "pin_longitude"];
+    preparePostBody(filters: Filters){
+        const reqBodyFilters = {...filters} as Record<string, any>;
+        const date = filters.publish_date as Array<Date>;
+        const unity_aligned_only = filters.unity_aligned_only;
+        const [startDate, endDate] = formatDates(date);
+        delete reqBodyFilters.publish_date;
+        delete reqBodyFilters.unity_aligned_only;
 
-        const date = filters['publish_date'] as Array<Date>
-        const [startDate, endDate] = formatDates(date)
         const reqBody: Record<string, any> = {
             filters: reqBodyFilters,
             sampling_start_date: startDate,
             sampling_end_date: endDate,
-            sorting_key: sorting_key,
-            reverse: reverse,
-            per_page: null,
-            page_index: null,
+            unity_aligned_only
         }
+        return reqBody;
+    }
+
+    
+    async getAirtableRecords(filters: Filters,
+        only_explore_columns: Boolean=false) {
+        const reqBody: Record<string, any> = this.preparePostBody(filters);
 
         if( only_explore_columns ){
-            reqBody.columns = explore_columns;
+            reqBody.columns = ["source_id", "estimate_grade", "pin_latitude", "pin_longitude"];
         }
 
         const response = await this.httpPost('/data_provider/records', reqBody)
@@ -133,19 +122,7 @@ export default class httpClient {
     }
 
     async getEstimateGrades(filters: Filters) {
-        const reqBodyFilters: Record<string, string[]> = {}
-        Object.keys(filters).forEach((o: string) => {
-            const filter = Array.from(filters[o as FilterType]);
-            reqBodyFilters[o] = filter as string[]
-        })
-        delete reqBodyFilters['publish_date']
-        const date = filters['publish_date']        
-        const [startDate, endDate] = formatDates(date)
-        const reqBody = {
-            sampling_start_date: startDate,
-            sampling_end_date: endDate,
-            filters: reqBodyFilters
-        }
+        const reqBody: Record<string, any> = this.preparePostBody(filters);
 
         const response = await this.httpPost('/data_provider/country_seroprev_summary', reqBody);
         if (!response) {
@@ -183,47 +160,5 @@ export default class httpClient {
         });
 
         return formattedResponse;
-    }
-
-    // Note: deprecated but leaving here in case we need again
-    async postMetaAnalysis(filters: Filters,
-        aggregation_variable: AggregationFactor,
-        meta_analysis_technique: string = 'fixed',
-        meta_analysis_transformation: string = 'double_arcsin_precise') {
-        const reqBodyFilters: Record<string, string[]> = {}
-
-        const date = filters['publish_date'];
-        Object.keys(filters).forEach((o: string) => {
-            const filter = Array.from(filters[o as FilterType]);
-            reqBodyFilters[o] = filter as string[]
-        });
-
-        // TODO: Rename publish_date to sampling_end_date
-        delete reqBodyFilters['publish_date'];
-        const [startDate, endDate] = formatDates(date)
-        const reqBody = {
-            sampling_start_date: startDate,
-            sampling_end_date: endDate,
-            filters: reqBodyFilters,
-            aggregation_variable,
-            meta_analysis_technique,
-            meta_analysis_transformation
-        };
-
-        const response = await this.httpPost('/meta_analysis/records', reqBody);
-        if (response) {
-            // Convert response to aggregatedRecord object
-            const formatted_response: AggregatedRecord[] = Object.keys(response).filter((key: string) => response[key] !== null).map((key: string) => {
-                return {
-                    error: response[key].error_percent,
-                    n: response[key].total_N,
-                    name: key,
-                    numStudies: response[key].n_studies,
-                    seroprevalence: response[key].seroprevalence_percent,
-                }
-            });
-            return formatted_response;
-        }
-        return [];
     }
 }

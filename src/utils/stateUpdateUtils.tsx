@@ -1,15 +1,13 @@
 import _ from 'lodash';
 import httpClient from '../httpClient'
-import { AggregationFactor, Filters, FilterType } from '../types'
+import { Filters, FilterType } from '../types'
 
 export const updateFilters = async (
   dispatch: any,
   filters: Filters,
   filterType: FilterType,
-  filterValue: any[],
-  exploreIsOpen: Boolean,
-  page: string,
-  aggregationFactor: AggregationFactor) => {
+  filterValue: any,
+  page: string) => {
 
   dispatch({
     type: "CHANGE_LOADING",
@@ -29,14 +27,14 @@ export const updateFilters = async (
   });
 
   const updatedFilters: Filters = Object.assign({}, filters);
-  updatedFilters[filterType] = new Set(filterValue);
+  updatedFilters[filterType] = filterValue;
 
   const api = new httpClient()
   // Update current records when called
   const [records,
     estimateGradePrevalences] = await
       Promise.all([
-        api.getAirtableRecords(updatedFilters, exploreIsOpen),
+        api.getAirtableRecords(updatedFilters, true),
         api.getEstimateGrades(updatedFilters)
       ]);
  
@@ -58,7 +56,7 @@ export const updateFilters = async (
   })
 }
 
-export const initializeData = async (dispatch: any, filters: Filters, exploreIsOpen: Boolean, page: string) => {
+export const initializeData = async (dispatch: any, filters: Filters, page: string) => {
 
   const api = new httpClient()
 
@@ -72,7 +70,7 @@ export const initializeData = async (dispatch: any, filters: Filters, exploreIsO
   
   const [records,
     estimateGradePrevalences] = await Promise
-      .all([api.getAirtableRecords(filters, exploreIsOpen),
+      .all([api.getAirtableRecords(filters, true),
       api.getEstimateGrades(filters)]);
 
   dispatch({

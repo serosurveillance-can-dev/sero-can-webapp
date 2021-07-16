@@ -24,6 +24,7 @@ export default function InformationIcon(props: InformationIconProps) {
         offset={offset}
         position={position}
         size={popupSize}
+        hoverable
         onOpen={() => {
           sendAnalyticsEvent({
             /** Typically the object that was interacted with (e.g. 'Video') */

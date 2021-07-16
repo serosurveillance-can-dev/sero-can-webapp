@@ -3,29 +3,38 @@ import { useMediaQuery } from "react-responsive";
 import { Loader } from "semantic-ui-react";
 import { isMaintenanceMode, mobileDeviceOrTabletWidth } from "../../../constants";
 import { AppContext } from "../../../context";
-import { PageStateEnum } from "../../../types";
+import { PageStateEnum, Filters } from "../../../types";
 import MapboxMap from '../../map/MapboxMap';
 import MobileComponents from '../../mobile/ExploreMobile';
 import MaintenanceModal from "../../shared/MaintenanceModal";
 import LeftSidebar from "../../sidebar/left-sidebar/LeftSidebar";
 import RightSidebar from "../../sidebar/right-sidebar/RightSidebar";
 import Legend from "components/map/Legend";
+import { initializeData } from "../../../utils/stateUpdateUtils";
+import httpClient from "../../../httpClient";
 
-export default function Explore() {
+interface ExploreProps {
+  initialFilters?: Filters;
+}
+
+export default function Explore(props: ExploreProps) {
   const isMobileDeviceOrTablet = useMediaQuery({ maxDeviceWidth: mobileDeviceOrTabletWidth });
-  const [state, dispatch] = useContext(AppContext)
+  const [state, dispatch] = useContext(AppContext);
 
+  // Apply initial input filters and get records
   useEffect(() => {
-    dispatch({
-      type: "UPDATE_EXPLORE_IS_OPEN",
-      payload: true
-    })
-    return () => {
+    if(props.initialFilters){
       dispatch({
-        type: "UPDATE_EXPLORE_IS_OPEN",
-        payload: false
-      })
+        type: 'UPDATE_ALL_FILTERS',
+        payload: {
+          newFilters: props.initialFilters,
+          pageStateEnum: PageStateEnum.explore
+        }
+      });
     }
+    const api = new httpClient();
+    initializeData(dispatch, state.explore.filters, PageStateEnum.explore)
+    // We only want this to run once so we pass no dependencies. Do not remove this
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

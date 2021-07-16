@@ -42,20 +42,19 @@ export type AggregatedRecord = {
   seroprevalence: number;
 };
 
-// Each filter will be a javascript set
-// TODO: find typing to represent sets
 export type Filters = {
-  source_type: any;
-  test_type: any;
-  country: any;
-  population_group: any;
-  sex: any;
-  age: any;
-  overall_risk_of_bias: any;
-  isotypes_reported: any;
-  specimen_type: any;
-  publish_date: any;
-  estimate_grade: any;
+  source_type: string[];
+  test_type: string[];
+  country: string[];
+  population_group: string[];
+  sex: string[];
+  age: string[];
+  overall_risk_of_bias: string[];
+  isotypes_reported: string[];
+  specimen_type: string[];
+  publish_date: Date[];
+  estimate_grade: string[];
+  unity_aligned_only: boolean;
 };
 
 export type FilterType =
@@ -68,7 +67,8 @@ export type FilterType =
   | "overall_risk_of_bias"
   | "isotypes_reported"
   | "specimen_type"
-  | "estimate_grade";
+  | "estimate_grade"
+  | "unity_aligned_only";
 
 export enum LanguageType {
   french = "fr",
@@ -87,7 +87,6 @@ export type State = {
   allFilterOptions: Filters;
   updatedAt: string;
   calendarStartDates: StartDates;
-  dataPageState: DataPageState;
   language: LanguageType;
   showCookieBanner: boolean;
   countries: any;
@@ -146,35 +145,3 @@ export enum AggregationFactor {
   overall_risk_of_bias = "overall_risk_of_bias",
   isotypes_reported = "isotypes_reported",
 }
-
-export type DataPageState = {
-  exploreIsOpen: boolean;
-};
-
-export type CustomMatcherResult = {
-  pass: boolean;
-  message: string;
-};
-
-export type PostRecordsBody = {
-  filters: {
-    country: String[];
-    source_type: String[];
-    source_name: String[];
-    overall_risk_of_bias: String[];
-    population_group: String[];
-    age: String[];
-    sex: String[];
-    test_type: String[];
-    isotypes_reported: String[];
-    specimen_type: String[];
-    estimate_grade: String[];
-  };
-  sampling_start_date: Date | null;
-  sampling_end_date: Date | null;
-  sorting_key: String;
-  reverse: Boolean;
-  per_page: Number;
-  page_index: Number;
-  columns: String[];
-};

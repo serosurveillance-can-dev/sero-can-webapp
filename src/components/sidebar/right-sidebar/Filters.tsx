@@ -8,6 +8,8 @@ import { toPascalCase } from "../../../utils/translate/caseChanger";
 import Translate, { getCountryName } from "../../../utils/translate/translateService";
 import InformationIcon from "../../shared/InformationIcon";
 import SectionHeader from "./SectionHeader";
+import Datepicker from "./datepicker/Datepicker";
+import "./Filters.css";
 
 interface FilterProps {
   page: string
@@ -16,10 +18,6 @@ interface FilterProps {
 export default function Filters({ page }: FilterProps) {
   const [state, dispatch] = useContext(AppContext);
   const pageState = state[page as keyof State] as PageState;
-
-  const getFilters = (filter_type: FilterType): string[] => {
-    return Array.from(pageState.filters[filter_type]) as string[]
-  }
 
   const formatOptions = (options: any, filter_type: FilterType) => {
     if (!options) {
@@ -54,22 +52,12 @@ export default function Filters({ page }: FilterProps) {
   }
 
   const addFilter = async (data: any, filterType: FilterType) => {
-    dispatch({
-      type: 'UPDATE_FILTER',
-      payload: {
-        filterType,
-        filterValue: data.value,
-        pageStateEnum: page
-      }
-    });
     await updateFilters(
       dispatch,
       pageState.filters,
       filterType,
-      data.value,
-      state.dataPageState.exploreIsOpen,
-      page,
-      state.chartAggregationFactor)
+      data,
+      page)
   }
 
   const buildFilterDropdown = (filter_type: FilterType, placeholder: string) => {
@@ -84,7 +72,7 @@ export default function Filters({ page }: FilterProps) {
           selection
           options={formatOptions(state.allFilterOptions[filter_type], filter_type)}
           onChange={async (e: any, data: any) => {
-            await addFilter(data, filter_type)
+            await addFilter(data.value, filter_type)
             sendAnalyticsEvent({
               /** Typically the object that was interacted with (e.g. 'Video') */
               category: 'Filter',
@@ -95,8 +83,22 @@ export default function Filters({ page }: FilterProps) {
               /** A numeric value associated with the event (e.g. 42) */
             })
           }}
-          defaultValue={getFilters(filter_type)}
+          defaultValue={pageState.filters[filter_type] as string[]}
         />
+      </div>
+    )
+  }
+
+  const buildFilterCheckbox = (filter_type: FilterType, label: string) => {
+    return(
+      <div className="checkbox-item pb-3" id="National" onClick={async (e: React.MouseEvent<HTMLElement>) => {
+        await addFilter(
+          !pageState.filters[filter_type], 
+          filter_type
+        )
+      }}>
+        <input className="ui checkbox" type="checkbox" checked={pageState.filters[filter_type] as boolean} readOnly />
+        <label>{label}</label>
       </div>
     )
   }
@@ -128,11 +130,26 @@ export default function Filters({ page }: FilterProps) {
                   tooltip_text={
                   <div>
                     <p>{Translate('StudyInformationTooltip', ['FirstParagraph'])}</p>
-                    <p>{Translate('StudyInformationTooltip', ['SecondParagraph'])}</p>
+                    <p>
+                      <b>{Translate('StudyInformationTooltip', ['SecondParagraph', 'PartOne'], null, [false, true])}</b>
+                      {Translate('StudyInformationTooltip', ['SecondParagraph', 'PartTwo'])}
+                    </p>
+                    <p>
+                      <b>{Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartOne'], null, [false, true])}</b>
+                      {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartTwo'], null, [false, true])}
+                      <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/technical-guidance/early-investigations" 
+                      target="_blank" rel="noopener noreferrer">
+                        {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartThree'], null, [false, true])}
+                      </a>
+                      {Translate('StudyInformationTooltip', ['ThirdParagraph', 'PartFour'])}
+                    </p>
                   </div>
                   }
                 />
               }
+            </div>
+            <div>
+              {buildFilterCheckbox('unity_aligned_only', Translate('ShowUnityStudies'))}
             </div>
             <div>
               {buildFilterDropdown('source_type', Translate('SourceType'))}
@@ -171,6 +188,7 @@ export default function Filters({ page }: FilterProps) {
           </div>
         </div>
       </div>
+      <Datepicker page={page}/>
     </div>
   )
 }

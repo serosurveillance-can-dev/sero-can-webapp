@@ -13,10 +13,9 @@ import { CookieBanner } from "./components/shared/CookieBanner";
 import { NavBar } from "./components/shared/NavBar";
 import { Footer } from "./components/shared/Footer";
 import TableauEmbed from "./components/shared/TableauEmbed";
-import { AppContext } from "./context";
+import { AppContext, getEmptyFilters } from "./context";
 import httpClient from "./httpClient";
 import { LanguageType, PageStateEnum } from "./types";
-import { initializeData } from "./utils/stateUpdateUtils";
 import { setLanguageType } from "./utils/translate/translateService";
 import { ANALYZE_URLS, CANADA_URLS } from "./constants";
 
@@ -26,8 +25,7 @@ function App() {
 
   // General call that happens once at the start of everything.
   useEffect(() => {
-    const api = new httpClient()
-    initializeData(dispatch, explore.filters, true, PageStateEnum.explore)
+    const api = new httpClient();
     const allFilterOptions = async () => {
       const { options, updatedAt, maxDate, minDate } = await api.getAllFilterOptions();
       dispatch({
@@ -155,6 +153,13 @@ function App() {
         </Route>
         <Route path="/:language/Publications">
           <Publications />
+        </Route>
+        <Route path="/:language/Unity">
+          <Explore initialFilters={(() => {
+            let initialFilters = getEmptyFilters();
+            initialFilters.unity_aligned_only = true;
+            return initialFilters;
+          })()}/>
         </Route>
         <Redirect exact from="/" to={`/${language}/Explore`} />
         {language && ["About", "Explore", "Analyze", "Data", "PrivacyPolicy", "CookiePolicy", "TermsOfUse", "Publications", "Canada"].map(route =>
