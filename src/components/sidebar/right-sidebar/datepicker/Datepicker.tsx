@@ -70,41 +70,33 @@ export default function Datepicker({ page }: DatepickerProps) {
           </div>
           <div>
             <DatePicker
-              dateFormat="yyyy/MM/dd"
-              selected={startDate}
-              minDate={state.calendarStartDates.minDate}
-              maxDate={endDate}
-              customInput={<CustomInput value={startDate} text={Translate("StartDate")} onClick={onclick} />}
-              closeOnScroll={true}
-              locale={state.language}
-              onChange={() => { }}
-              withPortal
-              showMonthDropdown
-              showYearDropdown
-              shouldCloseOnSelect={false}
-              dropdownMode="select"
-              onSelect={(date: Date) => datePickerChanged(true, date)}
+                selected={startDate}
+                onChange={() => { }}
+                dateFormatCalendar={"MMM yyyy"}
+                minDate={startDate}
+                maxDate={state.calendarStartDates.maxDate}
+                showMonthYearDropdown
+                onSelect={(date: Date) => datePickerChanged(true, date)}
             />
           </div>
           <div>
-            <DatePicker
+            {/*<DatePicker
             dateFormat="yyyy/MM/dd"
               className="col-12 p-0 date-picker"
               selected={endDate}
               locale={state.language}
               onSelect={(date: Date) => datePickerChanged(false, date)}
               customInput={<CustomInput value={startDate} text={Translate("EndDate")} onClick={onclick} />}
-              minDate={startDate}
-              maxDate={state.calendarStartDates.maxDate}
+            minDate={startDate}
+            maxDate={state.calendarStartDates.maxDate}
               onChange={() => { }}
               withPortal
-              showMonthDropdown
               closeOnScroll={true}
               shouldCloseOnSelect={false}
-              showYearDropdown
+              showMonthYearDropdown
               todayButton="Today"
               dropdownMode="select"
-            />
+            />*/}
           </div>
         </div>
         <div className="pb-1"></div>
