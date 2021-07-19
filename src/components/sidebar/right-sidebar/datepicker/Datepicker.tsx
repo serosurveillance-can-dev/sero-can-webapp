@@ -17,8 +17,14 @@ export default function Datepicker({ page }: DatepickerProps) {
   const [state, dispatch] = useContext(AppContext);
   const pageState = state[page as keyof State] as PageState;
   const [filterStartDate, filterEndDate] = Array.from(pageState.filters.publish_date);
-  const [startDate, setStartDate] = useState(filterStartDate);
-  const [endDate, setEndDate] = useState(filterEndDate);
+  const [startDate, setStartDate] = useState<Date>(filterStartDate);
+  const [endDate, setEndDate] = useState<Date>(filterEndDate);
+  const [minDate, setMindate] = useState<Date>(state.calendarStartDates.minDate);
+  const [maxDate, setMaxDate] = useState<Date>(state.calendarStartDates.maxDate)
+
+  //using these in place as a test
+/*  const minDate: Date = new Date(state.calendarStartDates.minDate.toDateString());
+  const maxDate: Date = new Date(state.calendarStartDates.maxDate.toDateString());*/
 
   useEffect(() => {
     registerLocale("en", enUS)
@@ -45,6 +51,13 @@ export default function Datepicker({ page }: DatepickerProps) {
       state.chartAggregationFactor)
   }
 
+  useEffect(() => {
+    console.log(minDate)
+    console.log(typeof maxDate)
+    console.log(typeof endDate)
+    console.log(startDate)
+  }, [])
+
   const CustomInput = ({ value, onClick, text }: any) => (
     <div className="col-12 p-0 flex column">
       <div>
@@ -70,36 +83,53 @@ export default function Datepicker({ page }: DatepickerProps) {
           </div>
           <div>
             <DatePicker
+                className="col-12 p-0 date-picker"
                 selected={startDate}
-                onChange={(date: Date) => datePickerChanged(true, date)}
+                onChange={() => { }}
+                onSelect={(date: Date) => datePickerChanged(true, date)}
                 dateFormatCalendar={"MMM yyyy"}
                 minDate={startDate}
-                maxDate={new Date()}
+                maxDate={maxDate}
                 showYearDropdown
                 yearDropdownItemNumber={5}
                 scrollableYearDropdown
                 showMonthDropdown
+
+                locale={state.language}
+                customInput={<CustomInput value={startDate} text={Translate("StartDate")} onClick={onclick} />}
+                withPortal
+                closeOnScroll={true}
+                shouldCloseOnSelect={false}
+                dropdownMode="select"
+
             />
           </div>
           <div>
             <DatePicker
+                className="col-12 p-0 date-picker"
                 selected={endDate}
-                onChange={(date: Date) => datePickerChanged(true, date)}
+                onChange={() => { }}
+                onSelect={(date: Date) => datePickerChanged(false, date)}
                 dateFormatCalendar={"MMM yyyy"}
-                minDate={startDate}
-                maxDate={new Date()}
+                minDate={minDate}
+                maxDate={endDate}
                 showYearDropdown
                 yearDropdownItemNumber={5}
                 scrollableYearDropdown
                 showMonthDropdown
+
+                locale={state.language}
+                customInput={<CustomInput value={endDate} text={Translate("EndDate")} onClick={onclick} />}
+                withPortal
+                closeOnScroll={true}
+                shouldCloseOnSelect={false}
+                dropdownMode="select"
+
             />
             {/*<DatePicker
             dateFormat="yyyy/MM/dd"
-              className="col-12 p-0 date-picker"
               selected={endDate}
-              locale={state.language}
               onSelect={(date: Date) => datePickerChanged(false, date)}
-              customInput={<CustomInput value={startDate} text={Translate("EndDate")} onClick={onclick} />}
             minDate={startDate}
             maxDate={state.calendarStartDates.maxDate}
               onChange={() => { }}
