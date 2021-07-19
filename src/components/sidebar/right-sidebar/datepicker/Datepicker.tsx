@@ -19,8 +19,14 @@ export default function Datepicker({ page }: DatepickerProps) {
   const [filterStartDate, filterEndDate] = Array.from(pageState.filters.publish_date);
   const [startDate, setStartDate] = useState<Date>(filterStartDate);
   const [endDate, setEndDate] = useState<Date>(filterEndDate);
+
+  //when I have it like this, it works perfectly but that does not make sense to me.
   const [minDate, setMindate] = useState<Date>(state.calendarStartDates.minDate);
   const [maxDate, setMaxDate] = useState<Date>(state.calendarStartDates.maxDate)
+
+  //When I have it like this, then it works for the first 5 seconds, and then breaks
+ /* const minDate = state.calendarStartDates.minDate;
+  const maxDate = state.calendarStartDates.maxDate;*/
 
   //using these in place as a test
 /*  const minDate: Date = new Date(state.calendarStartDates.minDate.toDateString());
@@ -29,6 +35,7 @@ export default function Datepicker({ page }: DatepickerProps) {
   useEffect(() => {
     registerLocale("en", enUS)
     registerLocale("fr", fr)
+
   }, [])
 
   const datePickerChanged = async (isStart: Boolean, date: Date) => {
@@ -88,8 +95,8 @@ export default function Datepicker({ page }: DatepickerProps) {
                 onChange={() => { }}
                 onSelect={(date: Date) => datePickerChanged(true, date)}
                 dateFormatCalendar={"MMM yyyy"}
-                minDate={startDate}
-                maxDate={maxDate}
+                minDate={minDate}
+                maxDate={endDate}
                 showYearDropdown
                 yearDropdownItemNumber={5}
                 scrollableYearDropdown
@@ -101,6 +108,7 @@ export default function Datepicker({ page }: DatepickerProps) {
                 closeOnScroll={true}
                 shouldCloseOnSelect={false}
                 dropdownMode="select"
+                todayButton="Today"
 
             />
           </div>
@@ -111,8 +119,8 @@ export default function Datepicker({ page }: DatepickerProps) {
                 onChange={() => { }}
                 onSelect={(date: Date) => datePickerChanged(false, date)}
                 dateFormatCalendar={"MMM yyyy"}
-                minDate={minDate}
-                maxDate={endDate}
+                minDate={startDate}
+                maxDate={maxDate}
                 showYearDropdown
                 yearDropdownItemNumber={5}
                 scrollableYearDropdown
@@ -124,6 +132,7 @@ export default function Datepicker({ page }: DatepickerProps) {
                 closeOnScroll={true}
                 shouldCloseOnSelect={false}
                 dropdownMode="select"
+                todayButton="Today"
 
             />
             {/*<DatePicker
