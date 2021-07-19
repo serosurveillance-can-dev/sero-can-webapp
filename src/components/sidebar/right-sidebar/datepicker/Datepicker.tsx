@@ -19,24 +19,19 @@ export default function Datepicker({ page }: DatepickerProps) {
   const [filterStartDate, filterEndDate] = Array.from(pageState.filters.publish_date);
   const [startDate, setStartDate] = useState<Date>(filterStartDate);
   const [endDate, setEndDate] = useState<Date>(filterEndDate);
+  const minDate = state.calendarStartDates.minDate;
+  const maxDate = state.calendarStartDates.maxDate;
 
-  //when I have it like this, it works perfectly but that does not make sense to me.
-  const [minDate, setMindate] = useState<Date>(state.calendarStartDates.minDate);
-  const [maxDate, setMaxDate] = useState<Date>(state.calendarStartDates.maxDate)
-
-  //When I have it like this, then it works for the first 5 seconds, and then breaks
- /* const minDate = state.calendarStartDates.minDate;
-  const maxDate = state.calendarStartDates.maxDate;*/
-
-  //using these in place as a test
-/*  const minDate: Date = new Date(state.calendarStartDates.minDate.toDateString());
-  const maxDate: Date = new Date(state.calendarStartDates.maxDate.toDateString());*/
 
   useEffect(() => {
     registerLocale("en", enUS)
     registerLocale("fr", fr)
-
   }, [])
+
+  useEffect(() => {
+    if(startDate < minDate) setStartDate(minDate);
+    if(endDate > maxDate) setEndDate(maxDate);
+  }, [startDate, endDate, minDate, maxDate])
 
   const datePickerChanged = async (isStart: Boolean, date: Date) => {
     const newDates = [startDate, endDate];
@@ -57,13 +52,6 @@ export default function Datepicker({ page }: DatepickerProps) {
       page,
       state.chartAggregationFactor)
   }
-
-  useEffect(() => {
-    console.log(minDate)
-    console.log(typeof maxDate)
-    console.log(typeof endDate)
-    console.log(startDate)
-  }, [])
 
   const CustomInput = ({ value, onClick, text }: any) => (
     <div className="col-12 p-0 flex column">
@@ -95,6 +83,7 @@ export default function Datepicker({ page }: DatepickerProps) {
                 onChange={() => { }}
                 onSelect={(date: Date) => datePickerChanged(true, date)}
                 dateFormatCalendar={"MMM yyyy"}
+                dateFormat="yyyy/MM/dd"
                 minDate={minDate}
                 maxDate={endDate}
                 showYearDropdown
@@ -118,6 +107,7 @@ export default function Datepicker({ page }: DatepickerProps) {
                 selected={endDate}
                 onChange={() => { }}
                 onSelect={(date: Date) => datePickerChanged(false, date)}
+                dateFormat="yyyy/MM/dd"
                 dateFormatCalendar={"MMM yyyy"}
                 minDate={startDate}
                 maxDate={maxDate}
@@ -135,20 +125,6 @@ export default function Datepicker({ page }: DatepickerProps) {
                 todayButton="Today"
 
             />
-            {/*<DatePicker
-            dateFormat="yyyy/MM/dd"
-              selected={endDate}
-              onSelect={(date: Date) => datePickerChanged(false, date)}
-            minDate={startDate}
-            maxDate={state.calendarStartDates.maxDate}
-              onChange={() => { }}
-              withPortal
-              closeOnScroll={true}
-              shouldCloseOnSelect={false}
-              showMonthYearDropdown
-              todayButton="Today"
-              dropdownMode="select"
-            />*/}
           </div>
         </div>
         <div className="pb-1"></div>

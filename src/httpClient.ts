@@ -72,7 +72,10 @@ export default class httpClient {
         const options: Record<string, any> = {}
         for(let k in response){
             // Currently no need for max and min date options
-            if(k !== "max_date" && k !== "min_date"){
+            //Note: From Himanshu: I changed the values of the string here
+            // because I noticed the backend response did not have a max_date and min_date value
+            //but it did have what is below.
+            if(k !== "max_publication_end_date" && k !== "min_publication_end_date"){
                 // For all the other options, use a Set instead of list
                 // Because that's the data model our filters are used to
                 // TODO: refactor so we can keep filter options in a list
@@ -82,8 +85,8 @@ export default class httpClient {
         // We know that only these 3 isotypes will ever be reported, thus we can hardcode
         options.isotypes_reported = new Set(["IgG", "IgA", "IgM"]);
         const updatedAt = format(parseISO(response.updated_at), "yyyy/MM/dd");
-        const maxDate = parseISO(response.max_date);     
-        const minDate = parseISO(response.min_date);
+        const maxDate = parseISO(response.max_publication_end_date);
+        const minDate = parseISO(response.min_publication_end_date);
         return { options, updatedAt, maxDate, minDate };
     }
     
