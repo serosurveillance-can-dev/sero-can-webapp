@@ -71,15 +71,28 @@ export default function Datepicker({ page }: DatepickerProps) {
           <div>
             <DatePicker
                 selected={startDate}
-                onChange={() => { }}
+                onChange={(date: Date) => datePickerChanged(true, date)}
                 dateFormatCalendar={"MMM yyyy"}
                 minDate={startDate}
-                maxDate={state.calendarStartDates.maxDate}
-                showMonthYearDropdown
-                onSelect={(date: Date) => datePickerChanged(true, date)}
+                maxDate={new Date()}
+                showYearDropdown
+                yearDropdownItemNumber={5}
+                scrollableYearDropdown
+                showMonthDropdown
             />
           </div>
           <div>
+            <DatePicker
+                selected={endDate}
+                onChange={(date: Date) => datePickerChanged(true, date)}
+                dateFormatCalendar={"MMM yyyy"}
+                minDate={startDate}
+                maxDate={new Date()}
+                showYearDropdown
+                yearDropdownItemNumber={5}
+                scrollableYearDropdown
+                showMonthDropdown
+            />
             {/*<DatePicker
             dateFormat="yyyy/MM/dd"
               className="col-12 p-0 date-picker"
