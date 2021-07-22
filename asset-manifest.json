@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.d800c699.chunk.css",
-    "main.js": "/static/js/main.3f1a99ed.chunk.js",
-    "main.js.map": "/static/js/main.3f1a99ed.chunk.js.map",
+    "main.js": "/static/js/main.f56cec0d.chunk.js",
+    "main.js.map": "/static/js/main.f56cec0d.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.9d5e18d9.js",
     "runtime-main.js.map": "/static/js/runtime-main.9d5e18d9.js.map",
     "static/css/2.6fe74026.chunk.css": "/static/css/2.6fe74026.chunk.css",
-    "static/js/2.350cfd97.chunk.js": "/static/js/2.350cfd97.chunk.js",
-    "static/js/2.350cfd97.chunk.js.map": "/static/js/2.350cfd97.chunk.js.map",
+    "static/js/2.5e81a9b9.chunk.js": "/static/js/2.5e81a9b9.chunk.js",
+    "static/js/2.5e81a9b9.chunk.js.map": "/static/js/2.5e81a9b9.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.3172551c4f9b1fd172dd5803a6daabaa.js": "/precache-manifest.3172551c4f9b1fd172dd5803a6daabaa.js",
+    "precache-manifest.b42f7a4c48816743cf5352bd0e3499df.js": "/precache-manifest.b42f7a4c48816743cf5352bd0e3499df.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.6fe74026.chunk.css.map": "/static/css/2.6fe74026.chunk.css.map",
     "static/css/main.d800c699.chunk.css.map": "/static/css/main.d800c699.chunk.css.map",
-    "static/js/2.350cfd97.chunk.js.LICENSE.txt": "/static/js/2.350cfd97.chunk.js.LICENSE.txt",
+    "static/js/2.5e81a9b9.chunk.js.LICENSE.txt": "/static/js/2.5e81a9b9.chunk.js.LICENSE.txt",
     "static/js/mapbox-gl-csp-worker.c39a782a.worker.js": "/static/js/mapbox-gl-csp-worker.c39a782a.worker.js",
     "static/js/mapbox-gl-csp-worker.c39a782a.worker.js.map": "/static/js/mapbox-gl-csp-worker.c39a782a.worker.js.map",
     "static/media/August2020Update.png": "/static/media/August2020Update.b2394ac4.png",
@@ -23,9 +23,10 @@
     "static/media/IndustryUpdateMay_2020.png": "/static/media/IndustryUpdateMay_2020.4021b423.png",
     "static/media/IndustryUpdatePre_2020.png": "/static/media/IndustryUpdatePre_2020.a93736ac.png",
     "static/media/InsuringTheEconomy.png": "/static/media/InsuringTheEconomy.14c5681c.png",
+    "static/media/InventoryEvidenceSynthesis.png": "/static/media/InventoryEvidenceSynthesis.b856b8ac.png",
     "static/media/LancetIDArticle.png": "/static/media/LancetIDArticle.9c54a7db.png",
-    "static/media/MedRXIV.jpg": "/static/media/MedRXIV.a3f4e9f6.jpg",
     "static/media/October2020Update.png": "/static/media/October2020Update.ca751a5c.png",
+    "static/media/PlosOnePub.png": "/static/media/PlosOnePub.69693f7a.png",
     "static/media/Prepublication.png": "/static/media/Prepublication.0b43b193.png",
     "static/media/September2020Update.png": "/static/media/September2020Update.dc9d0a68.png",
     "static/media/SeroTrackerBloodBank_July_2020.png": "/static/media/SeroTrackerBloodBank_July_2020.669b184d.png",
@@ -38,8 +39,8 @@
   "entrypoints": [
     "static/js/runtime-main.9d5e18d9.js",
     "static/css/2.6fe74026.chunk.css",
-    "static/js/2.350cfd97.chunk.js",
+    "static/js/2.5e81a9b9.chunk.js",
     "static/css/main.d800c699.chunk.css",
-    "static/js/main.3f1a99ed.chunk.js"
+    "static/js/main.f56cec0d.chunk.js"
   ]
 }
